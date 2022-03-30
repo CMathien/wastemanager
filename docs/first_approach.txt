@@ -1,0 +1,13 @@
+Pour commencer, j'ai lu l'énoncé et repéré les notions que je ne connaissais pas.
+J'ai effectué une première recherche sur ces notions. Dans mon cas, je ne connaissais pas le principe SOLID et je n'avais plus en tête le concept d'interface en POO.
+J'ai ensuite essayé de m'approprier l'énoncé en relevant les différentes entités qui devront être traitées dans le projet et essayé de faire ressortir les liens entre celles-ci ainsi que les actions à effectuer. J'ai schématisé les données reçues en entrée et celles attendues en sortie. J'ai également essayé de schématiser ce qui pourrait correspondre à des classes dans le code, de définir les attributs de ces classes à partir des différents termes cités dans l'énoncé, éventuellement d'identifier des méthodes qui pourraient s'avérer nécessaires.
+J'ai décidé de me créer un tableau Trello pour organiser mes différentes tâches. Sur ce tableau, j'ai essayé de décomposer le travail à faire en plusieurs petites tâches, de lister les recherches que je souhaite approfondir ou encore mes éventuelles questions.
+J'ai créé six colonnes : 
+	- To do : les tâches à réaliser
+	- In progress : les tâches en cours
+	- Done : les tâches terminées
+	- Notes : pour garder une trace des mes notes/questions/réponses
+	- Research : les recherches que je souhaite faire dans le cadre du projet
+	- Project : reprend la description et les liens de Simplonline
+J'ai aussi mis en place un système d'étiquettes de couleur en fonction du sujet des tâches (par exemple, une étiquette jaune pour ce qui concerne la rédaction de documents ou verte pour ce qui concerne le code)
+Je trouve difficile d'évaluer le temps que je vais passer sur ce projet ou même sur les différentes tâches. Il est probable que je n'aborde pas le problème sous le bon angle dès le départ et que je doive revenir sur ce qui avait déjà été fait. Par ailleurs, je vais devoir me réapproprier des concepts de POO que je n'ai pas réutilisé depuis un moment. Dans l'idéal, je pense finir mes recherches aujourd'hui (30/03/22), réussir à lire les données du JSON et commencer à créer mes classes le 31/03/22, finir la création de mes classes, tester la création d'objets à partir du JSON et commencer à rédiger les méthodes que je souhaite implémenter dans mon interface le 01/04/22 et donc finir le projet le 04/04/22 ou 05/04/22. Soit une vingtaine d'heures environ, à revoir à la hausse si je rencontre un  problème.
