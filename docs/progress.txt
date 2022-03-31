@@ -1,0 +1,7 @@
+30/03/22 :
+- 1h reading and understanding the problematic, short research on unknown concepts, taking notes and trying to draw a diagram of the problematic
+- 1h trying to make a to do list using Trello
+- 1h writing first approach document
+- 15min creating Git project and reviewing git commands with terminal
+- 1h research
+31/03/22 :
