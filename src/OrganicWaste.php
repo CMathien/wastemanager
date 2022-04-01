@@ -3,16 +3,12 @@ require_once "Waste.php";
 
 class OrganicWaste extends Waste
 {
-	private $compostEmissions;
-
-	// public function __construct() {
-	// 	Waste::$instances[] = $this;
-	// }
+	private int $compostEmissions;
 
 	/**
 	 * Get the value of compostEmissions
 	 */ 
-	public function getCompostEmissions()
+	public function getCompostEmissions():int
 	{
 		return $this->compostEmissions;
 	}
@@ -22,7 +18,7 @@ class OrganicWaste extends Waste
 	 *
 	 * @return  self
 	 */ 
-	public function setCompostEmissions($compostEmissions)
+	public function setCompostEmissions(int $compostEmissions):self
 	{
 		$this->compostEmissions = $compostEmissions;
 

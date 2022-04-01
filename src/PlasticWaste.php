@@ -3,12 +3,12 @@ require_once "Waste.php";
 
 abstract class PlasticWaste extends Waste
 {
-	private $recyclingEmissions;
+	private int $recyclingEmissions;
 
 	/**
 	 * Get the value of recyclingEmissions
 	 */ 
-	public function getRecyclingEmissions()
+	public function getRecyclingEmissions():int
 	{
 		return $this->recyclingEmissions;
 	}
@@ -18,7 +18,7 @@ abstract class PlasticWaste extends Waste
 	 *
 	 * @return  self
 	 */ 
-	public function setRecyclingEmissions($recyclingEmissions)
+	public function setRecyclingEmissions(int $recyclingEmissions):self
 	{
 		$this->recyclingEmissions = $recyclingEmissions;
 

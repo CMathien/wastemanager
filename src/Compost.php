@@ -3,12 +3,12 @@ require_once "Service.php";
 
 class Compost extends Service
 {
-	private $boxes;
+	private int $boxes;
 	
 	/**
 	 * Get the value of boxes
 	 */ 
-	public function getBoxes()
+	public function getBoxes():int
 	{
 		return $this->boxes;
 	}
@@ -18,7 +18,7 @@ class Compost extends Service
 	 *
 	 * @return  self
 	 */ 
-	public function setBoxes($boxes)
+	public function setBoxes(int $boxes):self
 	{
 		$this->boxes = $boxes;
 
@@ -30,7 +30,7 @@ class Compost extends Service
 	 *
 	 * @return  self
 	 */ 
-	public function setCapacity($capacity)
+	public function setCapacity(int $capacity):self
 	{
 		$this->capacity = $capacity * $this->boxes;
 

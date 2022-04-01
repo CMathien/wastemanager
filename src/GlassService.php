@@ -3,13 +3,12 @@ require_once "Service.php";
 
 class GlassService extends Service
 {
-	private $deposit;
-
+	private bool $deposit;
 
 	/**
 	 * Get the value of deposit
 	 */ 
-	public function getDeposit()
+	public function getDeposit():bool
 	{
 		return $this->deposit;
 	}
@@ -19,7 +18,7 @@ class GlassService extends Service
 	 *
 	 * @return  self
 	 */ 
-	public function setDeposit($deposit)
+	public function setDeposit(bool $deposit):self
 	{
 		$this->deposit = $deposit;
 

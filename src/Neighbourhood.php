@@ -2,13 +2,13 @@
 
 class Neighbourhood
 {
-	private $id;
-	private $population;
+	private int $id;
+	private int $population;
 
 	/**
 	 * Get the value of id
 	 */ 
-	public function getId()
+	public function getId():int
 	{
 		return $this->id;
 	}
@@ -18,7 +18,7 @@ class Neighbourhood
 	 *
 	 * @return  self
 	 */ 
-	public function setId($id)
+	public function setId(int $id):self
 	{
 		$this->id = $id;
 
@@ -28,7 +28,7 @@ class Neighbourhood
 	/**
 	 * Get the value of population
 	 */ 
-	public function getPopulation()
+	public function getPopulation():int
 	{
 		return $this->population;
 	}
@@ -38,7 +38,7 @@ class Neighbourhood
 	 *
 	 * @return  self
 	 */ 
-	public function setPopulation($population)
+	public function setPopulation(int $population):self
 	{
 		$this->population = $population;
 

@@ -2,39 +2,13 @@
 
 abstract class Waste
 {
-	private $wasteType;
-	private $incinerationEmissions;
-	// private Neighbourhood $neighbourhood;
-	// static $instances=array();
-
-	// public function __construct() {
-	//   Waste::$instances[] = $this;
-	// }
-
-	/**
-	 * Get the value of wasteType
-	 */ 
-	public function getWasteType()
-	{
-		return $this->wasteType;
-	}
-
-	/**
-	 * Set the value of wasteType
-	 *
-	 * @return  self
-	 */ 
-	public function setWasteType($wasteType)
-	{
-		$this->wasteType = $wasteType;
-
-		return $this;
-	}
+	private int $incinerationEmissions;
+	private Neighbourhood $neighbourhood;
 
 	/**
 	 * Get the value of incinerationEmissions
 	 */ 
-	public function getIncinerationEmissions()
+	public function getIncinerationEmissions():int
 	{
 		return $this->incinerationEmissions;
 	}
@@ -44,32 +18,30 @@ abstract class Waste
 	 *
 	 * @return  self
 	 */ 
-	public function setIncinerationEmissions($incinerationEmissions)
+	public function setIncinerationEmissions(int $incinerationEmissions):Waste
 	{
 		$this->incinerationEmissions = $incinerationEmissions;
 
 		return $this;
 	}
 
-	// /**
-	//  * Get the value of neighbourhood
-	//  */ 
-	// public function getNeighbourhood()
-	// {
-	// 	return $this->neighbourhood;
-	// }
+	/**
+	 * Get the value of neighbourhood
+	 */ 
+	public function getNeighbourhood():Neighbourhood
+	{
+		return $this->neighbourhood;
+	}
 
-	// /**
-	//  * Set the value of neighbourhood
-	//  *
-	//  * @return  self
-	//  */ 
-	// public function setNeighbourhood($neighbourhood)
-	// {
-	// 	$neighbourhood = new Neighbourhood;
+	/**
+	 * Set the value of neighbourhood
+	 *
+	 * @return  self
+	 */ 
+	public function setNeighbourhood(Neighbourhood $neighbourhood):self
+	{
+		$this->neighbourhood = $neighbourhood;
 
-	// 	$this->neighbourhood = $neighbourhood;
-
-	// 	return $this;
-	// }
+		return $this;
+	}
 }

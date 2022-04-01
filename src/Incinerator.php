@@ -3,12 +3,12 @@ require_once "Service.php";
 
 class Incinerator extends Service
 {
-	private $lines;
+	private int $lines;
 	
 	/**
 	 * Get the value of lines
 	 */ 
-	public function getlines()
+	public function getlines():int
 	{
 		return $this->lines;
 	}
@@ -18,7 +18,7 @@ class Incinerator extends Service
 	 *
 	 * @return  self
 	 */ 
-	public function setlines($lines)
+	public function setlines(int $lines):self
 	{
 		$this->lines = $lines;
 
@@ -30,7 +30,7 @@ class Incinerator extends Service
 	 *
 	 * @return  self
 	 */ 
-	public function setCapacity($capacity)
+	public function setCapacity(int $capacity):self
 	{
 		$this->capacity = $capacity * $this->lines;
 

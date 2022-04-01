@@ -2,33 +2,13 @@
 
 abstract class Service
 {
-	private $treatmentType;
-	private $capacity;
-
-	/**
-	 * Get the value of treatmentType
-	 */ 
-	public function getTreatmentType()
-	{
-		return $this->treatmentType;
-	}
-
-	/**
-	 * Set the value of treatmentType
-	 *
-	 * @return  self
-	 */ 
-	public function setTreatmentType($treatmentType)
-	{
-		$this->treatmentType = $treatmentType;
-
-		return $this;
-	}
+	private int $capacity;
+	private Neighbourhood $neighbourhood;
 
 	/**
 	 * Get the value of capacity
 	 */ 
-	public function getCapacity()
+	public function getCapacity():int
 	{
 		return $this->capacity;
 	}
@@ -38,9 +18,29 @@ abstract class Service
 	 *
 	 * @return  self
 	 */ 
-	public function setCapacity($capacity)
+	public function setCapacity(int $capacity):self
 	{
 		$this->capacity = $capacity;
+
+		return $this;
+	}
+
+	/**
+	 * Get the value of neighbourhood
+	 */ 
+	public function getNeighbourhood():Neighbourhood
+	{
+		return $this->neighbourhood;
+	}
+
+	/**
+	 * Set the value of neighbourhood
+	 *
+	 * @return  self
+	 */ 
+	public function setNeighbourhood(Neighbourhood $neighbourhood)
+	{
+		$this->neighbourhood = $neighbourhood;
 
 		return $this;
 	}
@@ -54,4 +54,6 @@ abstract class Service
 	{
 		//should calculate the emissions ()
 	}
+
+	
 }

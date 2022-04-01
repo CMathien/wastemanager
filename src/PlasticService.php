@@ -3,30 +3,25 @@ require_once "Service.php";
 
 class PlasticService extends Service
 {
-	private $allowedPlastics;
+	private int $recyclingEmissions;
 
 	/**
-	 * Get the value of allowedPlastics
+	 * Get the value of recyclingEmissions
 	 */ 
-	public function getAllowedPlastics()
+	public function getRecyclingEmissions():int
 	{
-		return $this->allowedPlastics;
+		return $this->recyclingEmissions;
 	}
 
 	/**
-	 * Set the value of allowedPlastics
+	 * Set the value of recyclingEmissions
 	 *
 	 * @return  self
 	 */ 
-	public function setAllowedPlastics($allowedPlastics)
+	public function setRecyclingEmissions(int $recyclingEmissions):self
 	{
-		$this->allowedPlastics = $allowedPlastics;
+		$this->recyclingEmissions = $recyclingEmissions;
 
 		return $this;
-	}
-
-	private function isAllowed()
-	{
-		//should check type + plastic type 
 	}
 }

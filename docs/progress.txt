@@ -8,3 +8,5 @@
 - 1h30 reading JSON data and trying to access to the different parameters 
 - 2h30 Working on classes
 01/04/22 :
+- 1h reorganizing classes
+- 15m adding typing
