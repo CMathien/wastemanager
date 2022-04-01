@@ -3,24 +3,24 @@ require_once "Service.php";
 
 class PlasticService extends Service
 {
-	private int $recyclingEmissions;
+	private array $allowedPlastics;
 
 	/**
-	 * Get the value of recyclingEmissions
+	 * Get the value of allowedPlastics
 	 */ 
-	public function getRecyclingEmissions():int
+	public function getAllowedPlastics():array
 	{
-		return $this->recyclingEmissions;
+		return $this->allowedPlastics;
 	}
 
 	/**
-	 * Set the value of recyclingEmissions
+	 * Set the value of allowedPlastics
 	 *
 	 * @return  self
 	 */ 
-	public function setRecyclingEmissions(int $recyclingEmissions):self
+	public function setAllowedPlastics(array $allowedPlastics):self
 	{
-		$this->recyclingEmissions = $recyclingEmissions;
+		$this->allowedPlastics = $allowedPlastics;
 
 		return $this;
 	}

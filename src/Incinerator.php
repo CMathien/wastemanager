@@ -8,7 +8,7 @@ class Incinerator extends Service
 	/**
 	 * Get the value of lines
 	 */ 
-	public function getlines():int
+	public function getLines():int
 	{
 		return $this->lines;
 	}
@@ -18,7 +18,7 @@ class Incinerator extends Service
 	 *
 	 * @return  self
 	 */ 
-	public function setlines(int $lines):self
+	public function setLines(int $lines):self
 	{
 		$this->lines = $lines;
 

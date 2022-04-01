@@ -3,6 +3,7 @@
 abstract class Waste
 {
 	private int $incinerationEmissions;
+	private int $quantity;
 	private Neighbourhood $neighbourhood;
 
 	/**
@@ -41,6 +42,26 @@ abstract class Waste
 	public function setNeighbourhood(Neighbourhood $neighbourhood):self
 	{
 		$this->neighbourhood = $neighbourhood;
+
+		return $this;
+	}
+
+	/**
+	 * Get the value of quantity
+	 */ 
+	public function getQuantity()
+	{
+		return $this->quantity;
+	}
+
+	/**
+	 * Set the value of quantity
+	 *
+	 * @return  self
+	 */ 
+	public function setQuantity($quantity)
+	{
+		$this->quantity = $quantity;
 
 		return $this;
 	}

@@ -3,7 +3,6 @@
 abstract class Service
 {
 	private int $capacity;
-	private Neighbourhood $neighbourhood;
 
 	/**
 	 * Get the value of capacity
@@ -21,26 +20,6 @@ abstract class Service
 	public function setCapacity(int $capacity):self
 	{
 		$this->capacity = $capacity;
-
-		return $this;
-	}
-
-	/**
-	 * Get the value of neighbourhood
-	 */ 
-	public function getNeighbourhood():Neighbourhood
-	{
-		return $this->neighbourhood;
-	}
-
-	/**
-	 * Set the value of neighbourhood
-	 *
-	 * @return  self
-	 */ 
-	public function setNeighbourhood(Neighbourhood $neighbourhood)
-	{
-		$this->neighbourhood = $neighbourhood;
 
 		return $this;
 	}
