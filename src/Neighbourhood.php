@@ -5,8 +5,6 @@ class Neighbourhood
 	private $id;
 	private $population;
 
-	
-
 	/**
 	 * Get the value of id
 	 */ 

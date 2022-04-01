@@ -1,12 +1,9 @@
 <?php
+require_once "Waste.php";
 
-class RecycableWaste extends Waste
+class MetalWaste extends Waste
 {
 	private $recyclingEmissions;
-
-	public function __construct() {
-		Waste::$instances[] = $this;
-	}
 
 	/**
 	 * Get the value of recyclingEmissions

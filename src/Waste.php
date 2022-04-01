@@ -1,15 +1,15 @@
 <?php
 
-class Waste
+abstract class Waste
 {
 	private $wasteType;
 	private $incinerationEmissions;
 	// private Neighbourhood $neighbourhood;
-	static $instances=array();
+	// static $instances=array();
 
-	public function __construct() {
-	  Waste::$instances[] = $this;
-	}
+	// public function __construct() {
+	//   Waste::$instances[] = $this;
+	// }
 
 	/**
 	 * Get the value of wasteType

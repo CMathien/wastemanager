@@ -1,6 +1,6 @@
 <?php
 
-class Service
+abstract class Service
 {
 	private $treatmentType;
 	private $capacity;

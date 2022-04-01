@@ -1,4 +1,5 @@
 <?php
+require_once "Service.php";
 
 class Compost extends Service
 {

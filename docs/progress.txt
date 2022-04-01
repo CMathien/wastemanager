@@ -5,5 +5,6 @@
 - 15min creating Git project and reviewing git commands with terminal
 - 1h research
 31/03/22 :
-- 1h reading JSON data and trying to access to the different parameters 
-- Listing classes
+- 1h30 reading JSON data and trying to access to the different parameters 
+- 2h30 Working on classes
+01/04/22 :

@@ -1,4 +1,5 @@
 <?php
+require_once "Service.php";
 
 class Incinerator extends Service
 {

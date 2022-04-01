@@ -1,12 +1,13 @@
 <?php
+require_once "Waste.php";
 
-class CompostableWaste extends Waste
+class OrganicWaste extends Waste
 {
 	private $compostEmissions;
 
-	public function __construct() {
-		Waste::$instances[] = $this;
-	}
+	// public function __construct() {
+	// 	Waste::$instances[] = $this;
+	// }
 
 	/**
 	 * Get the value of compostEmissions
