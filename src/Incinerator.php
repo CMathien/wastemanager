@@ -1,7 +1,8 @@
 <?php
 require_once "Service.php";
+require_once "IncineratorInterface.php";
 
-class Incinerator extends Service
+class Incinerator extends Service implements IncineratorInterface
 {
 	private int $lines;
 	
@@ -25,15 +26,20 @@ class Incinerator extends Service
 		return $this;
 	}
 
-	/**
-	 * Set the value of capacity
-	 *
-	 * @return  self
-	 */ 
-	public function setCapacity(int $capacity):self
-	{
-		$this->capacity = $capacity * $this->lines;
+	// /**
+	//  * Set the value of capacity
+	//  *
+	//  * @return  self
+	//  */ 
+	// public function setCapacity(int $capacity):self
+	// {
+	// 	$this->capacity = $capacity * $this->lines;
 
-		return $this;
+	// 	return $this;
+	// }
+
+	public function treatWaste(IncineratorInterface $waste):void
+	{
+		
 	}
 }

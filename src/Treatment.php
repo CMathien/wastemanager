@@ -114,7 +114,9 @@ class Treatment
 	 */
 	function createServices(array $services):self
 	{
+		$listServices = [];
 		foreach ( $services as $service ) {
+			$newService = null;
 			switch ($service->type) {
 				case 'incinerateur':
 					$newService = new Incinerator();
@@ -154,9 +156,10 @@ class Treatment
 					# code...
 					break;
 			}
-			array_push($services, $newService);
+			array_push($listServices, $newService);
 		}
-		$this->services = $services;
+
+		$this->services = $listServices;
 		return $this;
 	}
 	
@@ -168,7 +171,7 @@ class Treatment
 	 */
 	public function createNeighbourhoodWaste(array $neighbourhoods):self
 	{
-		$wastes = [];
+		$listWastes = [];
 		$listNeighbourhoods = [];
 
 		foreach ($neighbourhoods as $neighbourhood)
@@ -220,7 +223,7 @@ class Treatment
 							$newWaste->setQuantity($val);
 							$newWaste->setNeighbourhood($newNeighbourhood);
 							$this->findEmissionsValues($newWaste);
-							array_push($wastes, $newWaste);
+							array_push($listWastes, $newWaste);
 						}
 						break;
 					
@@ -233,11 +236,11 @@ class Treatment
 					$newWaste->setQuantity($value);
 					$newWaste->setNeighbourhood($newNeighbourhood);
 					$this->findEmissionsValues($newWaste);
-					array_push($wastes, $newWaste);
+					array_push($listWastes, $newWaste);
 				}
 			}
 			$this->neighbourhoods = $listNeighbourhoods;
-			$this->wastes = $wastes;
+			$this->wastes = $listWastes;
 		}
 		return $this;
 	}
@@ -259,6 +262,29 @@ class Treatment
 		echo PHP_EOL;
 		var_dump($this->wastes);
 		echo PHP_EOL;
+	}
+
+	public function sendWaste():void
+	{
+		if ( isset($this->wastes) && isset($this->services) )
+		{
+
+			foreach ( $this->services as $service )
+			{
+				while ( $service->getCapacity() > 0 )
+				{
+					$interface = array_values(class_implements($service))[0];
+					echo $interface;
+					foreach ( $this->wastes as $waste )
+					{
+						// if ( $waste->getQuantity > 0 && )
+						//TODO
+					}
+					$service->setCapacity(0);
+				}
+			}
+		}
+		
 	}
 
 }

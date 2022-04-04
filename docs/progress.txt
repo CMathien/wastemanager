@@ -12,4 +12,8 @@
 - 15m adding typing to existing classes
 - 2h45 creating Treatment class with methods to create Neighbourhood, Waste and Service objects by extracting data of JSON files
 04/04/2022 :
+- 1h finishing to write the method to make Waste/Neighbouhood objects from JSON
 - 1h creating and implementing interfaces
+- 30m Working on tasks manager project to find a way to use the interfaces on a smaller project
+- 
+

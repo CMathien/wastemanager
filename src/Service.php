@@ -2,7 +2,7 @@
 
 abstract class Service
 {
-	private int $capacity;
+	protected int $capacity;
 
 	/**
 	 * Get the value of capacity
@@ -34,5 +34,4 @@ abstract class Service
 		//should calculate the emissions ()
 	}
 
-	
 }

@@ -1,7 +1,8 @@
 <?php
 require_once "Service.php";
+require_once "PlasticInterface.php";
 
-class PlasticService extends Service
+class PlasticService extends Service implements PlasticInterface
 {
 	private array $allowedPlastics;
 
@@ -23,5 +24,10 @@ class PlasticService extends Service
 		$this->allowedPlastics = $allowedPlastics;
 
 		return $this;
+	}
+
+	public function treatWaste(PlasticInterface $waste):void
+	{
+		
 	}
 }

@@ -2,8 +2,9 @@
 require_once "Waste.php";
 require_once "IncineratorInterface.php";
 require_once "PVCInterface.php";
+require_once "PlasticInterface.php";
 
-class PVCWaste extends Waste implements IncineratorInterface, PVCInterface
+class PVCWaste extends Waste implements IncineratorInterface, PVCInterface, PlasticInterface
 {
 	private int $recyclingEmissions;
 

@@ -1,7 +1,8 @@
 <?php
 require_once "Service.php";
+require_once "CompostInterface.php";
 
-class Compost extends Service
+class Compost extends Service implements CompostInterface
 {
 	private int $boxes;
 	
@@ -35,5 +36,10 @@ class Compost extends Service
 		$this->capacity = $capacity * $this->boxes;
 
 		return $this;
+	}
+
+	public function treatWaste(CompostInterface $waste):void
+	{
+		
 	}
 }

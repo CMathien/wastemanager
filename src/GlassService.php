@@ -1,7 +1,8 @@
 <?php
 require_once "Service.php";
+require_once "GlassInterface.php";
 
-class GlassService extends Service
+class GlassService extends Service implements GlassInterface
 {
 	private bool $deposit;
 
@@ -23,5 +24,10 @@ class GlassService extends Service
 		$this->deposit = $deposit;
 
 		return $this;
+	}
+
+	public function treatWaste(GlassInterface $waste):void
+	{
+		
 	}
 }
