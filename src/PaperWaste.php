@@ -1,7 +1,9 @@
 <?php
 require_once "Waste.php";
+require_once "IncineratorInterface.php";
+require_once "PaperInterface.php";
 
-class PaperWaste extends Waste
+class PaperWaste extends Waste implements IncineratorInterface, PaperInterface
 {
 	private int $recyclingEmissions;
 

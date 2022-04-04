@@ -1,7 +1,9 @@
 <?php
 require_once "Waste.php";
+require_once "IncineratorInterface.php";
+require_once "CompostInterface.php";
 
-class OrganicWaste extends Waste
+class OrganicWaste extends Waste implements IncineratorInterface, CompostInterface
 {
 	private int $compostEmissions;
 
