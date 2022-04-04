@@ -22,7 +22,7 @@ class Treatment
 	private string $emissionsList;
 	private array $services;
 	private array $neighbourhoods;
-	private array $waste;
+	private array $wastes;
 
 	public function __construct($wasteList, $emissionsList)
 	{
@@ -47,10 +47,10 @@ class Treatment
 	/**
 	 * Find carbon emissions values of waste type
 	 *
-	 * @param  Object $waste
-	 * @return Object
+	 * @param  Waste $waste
+	 * @return void
 	 */
-	private function findEmissionsValues(Object $waste):Object
+	private function findEmissionsValues(Waste $waste):Waste
 	{
 		$obj = $this->readJson($this->emissionsList);
 		$class = get_class($waste);
@@ -110,9 +110,9 @@ class Treatment
 	 * Create waste treatment services
 	 *
 	 * @param  array $services
-	 * @return array
+	 * @return self
 	 */
-	function createServices(array $services):array
+	function createServices(array $services):self
 	{
 		foreach ( $services as $service ) {
 			switch ($service->type) {
@@ -157,23 +157,30 @@ class Treatment
 			array_push($services, $newService);
 		}
 		$this->services = $services;
-		return $services;
+		return $this;
 	}
 	
 	/**
-	 * Create the neighbouhoods ans waste
+	 * Create the neighbouhoods and wastes
 	 *
 	 * @param  array $neighbourhoods
-	 * @return array
+	 * @return self
 	 */
-	public function createNeighbourhoodWaste(array $neighbourhoods):array
+	public function createNeighbourhoodWaste(array $neighbourhoods):self
 	{
+		$wastes = [];
+		$listNeighbourhoods = [];
+
 		foreach ($neighbourhoods as $neighbourhood)
 		{
+			$newNeighbourhood = null;
 			$newNeighbourhood = new Neighbourhood();
 			$newNeighbourhood->setPopulation($neighbourhood->population);
+			array_push($listNeighbourhoods, $newNeighbourhood);
+			
 			foreach ($neighbourhood as $key=>$value )
 			{
+				$newWaste = null;
 				switch ($key) {
 					case 'autre':
 						$newWaste = new OtherWaste();
@@ -181,12 +188,47 @@ class Treatment
 					case 'metaux':
 						$newWaste = new MetalWaste();
 						break;
-					//TODO Add other cases
+					case 'verre':
+						$newWaste = new GlassWaste();
+						break;
+					case 'organique':
+						$newWaste = new OrganicWaste();
+						break;
+					case 'papier':
+						$newWaste = new PaperWaste();
+						break;
+					case 'plastiques':
+						foreach ( $value as $plasticType => $val)
+						{
+							switch ($plasticType) {
+								case 'PET':
+									$newWaste = new PETWaste();
+									break;
+								case 'PVC':
+									$newWaste = new PVCWaste();
+									break;
+								case 'PC':
+									$newWaste = new PCWaste();
+									break;
+								case 'PEHD':
+									$newWaste = new PEHDWaste();
+									break;
+								default:
+									# code...
+									break;
+							}
+							$newWaste->setQuantity($val);
+							$newWaste->setNeighbourhood($newNeighbourhood);
+							$this->findEmissionsValues($newWaste);
+							array_push($wastes, $newWaste);
+						}
+						break;
+					
 					default:
 						# code...
 						break;
 				}
-				if ( isset($newWaste) )
+				if ( isset($newWaste) && $newWaste != null && $key != "plastiques" )
 				{
 					$newWaste->setQuantity($value);
 					$newWaste->setNeighbourhood($newNeighbourhood);
@@ -194,10 +236,10 @@ class Treatment
 					array_push($wastes, $newWaste);
 				}
 			}
+			$this->neighbourhoods = $listNeighbourhoods;
+			$this->wastes = $wastes;
 		}
-
-		return [];
-
+		return $this;
 	}
 
 	public function loadData()
@@ -209,5 +251,14 @@ class Treatment
 		$this->createNeighbourhoodWaste($neighbourhoods);
 	}
 
+	public function printArrays():void
+	{
+		var_dump($this->neighbourhoods);
+		echo PHP_EOL;
+		var_dump($this->services);
+		echo PHP_EOL;
+		var_dump($this->wastes);
+		echo PHP_EOL;
+	}
 
 }

@@ -11,3 +11,5 @@
 - 1h reorganizing classes
 - 15m adding typing to existing classes
 - 2h45 creating Treatment class with methods to create Neighbourhood, Waste and Service objects by extracting data of JSON files
+04/04/2022 :
+- 1h creating and implementing interfaces
