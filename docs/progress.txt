@@ -15,5 +15,5 @@
 - 1h finishing to write the method to make Waste/Neighbouhood objects from JSON
 - 1h creating and implementing interfaces
 - 30m Working on tasks manager project to find a way to use the interfaces on a smaller project
-- 
+- 1h modifying the implementation of interfaces, looking at PHP functions that give infos about implemented interface
 
