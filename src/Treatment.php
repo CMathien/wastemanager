@@ -15,6 +15,7 @@ require_once "PCWaste.php";
 require_once "PEHDWaste.php";
 require_once "PETWaste.php";
 require_once "PVCWaste.php";
+require_once "File.php";
 
 class Treatment
 {
@@ -31,17 +32,16 @@ class Treatment
 		$this->loadData();
 	}
 
+	
 	/**
-	 * Read JSON and generate an object with the JSON data
+	 * readJSON
 	 *
-	 * @param  string $url
+	 * @param  JSONInterface $file
 	 * @return Object
 	 */
-	private function readJSON(string $url):Object
+	public function readJson(JSONInterface $file): Object
 	{
-		$data = file_get_contents($url);
-		$obj = json_decode($data);
-		return $obj;
+		return $file->read();
 	}
 	
 	/**
@@ -52,7 +52,7 @@ class Treatment
 	 */
 	private function findEmissionsValues(Waste $waste):Waste
 	{
-		$obj = $this->readJson($this->emissionsList);
+		$obj = $this->readJson(new File($this->emissionsList));
 		$class = get_class($waste);
 		switch ($class)
 		{
@@ -156,6 +156,7 @@ class Treatment
 					# code...
 					break;
 			}
+			$newService->setUsedCapacity(0);
 			array_push($listServices, $newService);
 		}
 
@@ -247,44 +248,50 @@ class Treatment
 
 	public function loadData()
 	{
-		$obj = $this->readJSON($this->wasteList);
+		$obj = $this->readJson(new File($this->wasteList));
 		$neighbourhoods = $obj->quartiers;
 		$services = $obj->services;
 		$this->createServices($services);
 		$this->createNeighbourhoodWaste($neighbourhoods);
 	}
 
-	public function printArrays():void
+	public function testCreationObjects():void
 	{
 		var_dump($this->neighbourhoods);
-		echo PHP_EOL;
 		var_dump($this->services);
-		echo PHP_EOL;
 		var_dump($this->wastes);
-		echo PHP_EOL;
 	}
 
 	public function sendWaste():void
 	{
 		if ( isset($this->wastes) && isset($this->services) )
 		{
-
+			$serviceCapacity = 0;
+			$serviceUsedCapacity = 0;
 			foreach ( $this->services as $service )
 			{
-				while ( $service->getCapacity() > 0 )
+				$serviceCapacity = $service->getCapacity();
+				$serviceUsedCapacity = $service->getUsedCapacity();
+				while ( $serviceUsedCapacity < $serviceCapacity )
 				{
 					$interface = array_values(class_implements($service))[0];
-					echo $interface;
+
 					foreach ( $this->wastes as $waste )
 					{
-						// if ( $waste->getQuantity > 0 && )
-						//TODO
+						if ( $waste->getQuantity() > 0 && in_array($interface, class_implements($waste)) && $serviceUsedCapacity < $serviceCapacity )
+						{
+							$wasteQuantity = $waste->getQuantity();
+							$serviceUsedCapacity = $serviceUsedCapacity + $wasteQuantity;
+							$service->treatWaste($waste);
+							$serviceCapacity = $service->getCapacity();
+							$serviceUsedCapacity = $service->getUsedCapacity();
+						}
+						
 					}
-					$service->setCapacity(0);
+					$service->setUsedCapacity($serviceCapacity+1);
+					$serviceUsedCapacity = $service->getUsedCapacity();
 				}
 			}
 		}
-		
 	}
-
 }

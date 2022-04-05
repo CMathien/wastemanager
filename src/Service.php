@@ -3,6 +3,8 @@
 abstract class Service
 {
 	protected int $capacity;
+	protected int $usedCapacity;
+
 
 	/**
 	 * Get the value of capacity
@@ -24,14 +26,23 @@ abstract class Service
 		return $this;
 	}
 
-	private function isAllowed()
+	/**
+	 * Get the value of usedCapacity
+	 */ 
+	public function getUsedCapacity():int
 	{
-		//should check type 
+		return $this->usedCapacity;
 	}
 
-	private function calculateEmissions()
+	/**
+	 * Set the value of usedCapacity
+	 *
+	 * @return  self
+	 */ 
+	public function setUsedCapacity($usedCapacity):self
 	{
-		//should calculate the emissions ()
-	}
+		$this->usedCapacity = $usedCapacity;
 
+		return $this;
+	}
 }
