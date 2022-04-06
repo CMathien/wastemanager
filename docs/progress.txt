@@ -21,4 +21,6 @@
 - 45m seaking inspiration for a way to use interfaces
 - 1h30 implementing JsonInterface, working on method to distribute the waste
 06/04-22
+- 1h reviewing SOLID principle and Task Manager project
+- 2h15 Working on the methods to display the waste repartition, the global emissions, the service emissions
 
