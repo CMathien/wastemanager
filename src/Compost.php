@@ -6,6 +6,11 @@ class Compost extends Service implements CompostInterface
 {
 	private int $boxes;
 	
+	public function getName():string
+	{
+		return "composteur";
+	}
+
 	/**
 	 * Get the value of boxes
 	 */ 
@@ -49,7 +54,7 @@ class Compost extends Service implements CompostInterface
 			$waste->setQuantity(0);
 			echo $wasteQuantity . " tonnes de déchets ont été compostées. Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . "<br>";
 			$this->setEmissions($this->getEmissions() + $wasteQuantity * $waste->getCompostEmissions());
-			$this->setWasteRepartition(get_class($waste), $wasteQuantity);
+			$this->setWasteRepartition($waste->getName(), $wasteQuantity);
 
 		}
 		else
@@ -59,7 +64,7 @@ class Compost extends Service implements CompostInterface
 			$waste->setQuantity($untreatedWaste);
 			echo $wasteQuantity - $untreatedWaste . " tonnes de déchets ont été compostées. Il reste " . $untreatedWaste . " tonnes de déchets à traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . "<br>";
 			$this->setEmissions($this->getEmissions() + ($wasteQuantity - $untreatedWaste) * $waste->getCompostEmissions());
-			$this->setWasteRepartition(get_class($waste), $wasteQuantity - $untreatedWaste);
+			$this->setWasteRepartition($waste->getName(), $wasteQuantity - $untreatedWaste);
 		}
 	}
 }

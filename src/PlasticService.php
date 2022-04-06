@@ -6,6 +6,15 @@ class PlasticService extends Service implements PlasticInterface
 {
 	private array $allowedPlastics;
 
+	public function getName():string
+	{
+		$name = "service de recyclage spécial plastique";
+		if (isset($this->allowedPlastics))
+		{
+			$name = $name . " (" . implode(", ", $this->allowedPlastics) . ")";
+		}
+		return $name;
+	}
 	/**
 	 * Get the value of allowedPlastics
 	 */ 
@@ -39,7 +48,7 @@ class PlasticService extends Service implements PlasticInterface
 				$waste->setQuantity(0);
 				echo $wasteQuantity . " tonnes de déchets ont été traitées (plastique). Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . "<br>";
 				$this->setEmissions($this->getEmissions() + $wasteQuantity * $waste->getRecyclingEmissions());
-				$this->setWasteRepartition(get_class($waste), $wasteQuantity);
+				$this->setWasteRepartition($waste->getName(), $wasteQuantity);
 			}
 			else
 			{
@@ -48,7 +57,7 @@ class PlasticService extends Service implements PlasticInterface
 				$waste->setQuantity($untreatedWaste);
 				echo $wasteQuantity - $untreatedWaste . " tonnes de déchets ont été traitées (plastique). Il reste " . $untreatedWaste . " tonnes de déchets à traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . "<br>";
 				$this->setEmissions($this->getEmissions() + ($wasteQuantity - $untreatedWaste) * $waste->getRecyclingEmissions());
-				$this->setWasteRepartition(get_class($waste), $wasteQuantity - $untreatedWaste);
+				$this->setWasteRepartition($waste->getName(), $wasteQuantity - $untreatedWaste);
 			}
 		}
 	}

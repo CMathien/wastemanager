@@ -6,6 +6,11 @@ class GlassService extends Service implements GlassInterface
 {
 	private bool $deposit;
 
+	public function getName():string
+	{
+		return "service de recyclage spécial verre";
+	}
+
 	/**
 	 * Get the value of deposit
 	 */ 
@@ -37,7 +42,7 @@ class GlassService extends Service implements GlassInterface
 			$waste->setQuantity(0);
 			echo $wasteQuantity . " tonnes de déchets ont été traitées (verre). Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . "<br>";
 			$this->setEmissions($this->getEmissions() + $wasteQuantity * $waste->getRecyclingEmissions());
-			$this->setWasteRepartition(get_class($waste), $wasteQuantity);
+			$this->setWasteRepartition($waste->getName(), $wasteQuantity);
 		}
 		else
 		{
@@ -46,7 +51,7 @@ class GlassService extends Service implements GlassInterface
 			$waste->setQuantity($untreatedWaste);
 			echo $wasteQuantity - $untreatedWaste . " tonnes de déchets ont été traitées (verre). Il reste " . $untreatedWaste . " tonnes de déchets à traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . "<br>";
 			$this->setEmissions($this->getEmissions() + ($wasteQuantity - $untreatedWaste) * $waste->getRecyclingEmissions());
-			$this->setWasteRepartition(get_class($waste), $wasteQuantity - $untreatedWaste);
+			$this->setWasteRepartition($waste->getName(), $wasteQuantity - $untreatedWaste);
 		}
 		
 	}

@@ -7,6 +7,11 @@ class PaperWaste extends Waste implements IncineratorInterface, PaperInterface
 {
 	private int $recyclingEmissions;
 
+	public function getName():string
+	{
+		return "papier";
+	}
+
 	/**
 	 * Get the value of recyclingEmissions
 	 */ 

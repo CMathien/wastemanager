@@ -8,6 +8,11 @@ class PETWaste extends Waste implements IncineratorInterface, PETInterface, Plas
 {
 	private int $recyclingEmissions;
 
+	public function getName():string
+	{
+		return "plastique PET";
+	}
+
 	/**
 	 * Get the value of recyclingEmissions
 	 */ 

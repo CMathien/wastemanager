@@ -8,6 +8,10 @@ class PEHDWaste extends Waste implements IncineratorInterface, PEHDInterface, Pl
 {
 	private int $recyclingEmissions;
 
+	public function getName():string
+	{
+		return "plastique PEHD";
+	}
 	/**
 	 * Get the value of recyclingEmissions
 	 */ 

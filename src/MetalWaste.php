@@ -7,6 +7,10 @@ class MetalWaste extends Waste implements IncineratorInterface, MetalInterface
 {
 	private int $recyclingEmissions;
 
+	public function getName():string
+	{
+		return "métal";
+	}
 	/**
 	 * Get the value of recyclingEmissions
 	 */ 

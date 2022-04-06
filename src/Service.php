@@ -101,15 +101,15 @@ abstract class Service
 
 	public function displayServiceEmissions()
 	{
-		echo "Le service de type ".get_class($this)." a rejeté ".number_format($this->getEmissions(),0,","," ")." tonnes de CO2.<br>";
+		echo ucfirst($this->getName())." : ".number_format($this->getEmissions(),0,","," ")." tonnes de CO2 rejetées<br>";
 	}
 
 	public function displayServiceWasteRepartition()
 	{
-		echo "<table><tr><th colspan=2 align=center>Service de type ".get_class($this)."</th><tr>";
+		echo "<table><tr><th colspan=2>".ucfirst($this->getName())."</th><tr>";
 		foreach ( $this->getWasteRepartition() as $item => $value )
 		{
-			echo "<tr><td>".$item."</td><td>".number_format($value,0,","," ")." t</td></tr>";
+			echo "<tr><td>".ucfirst($item)."</td><td>".number_format($value,0,","," ")." t</td></tr>";
 		}
 	}
 }

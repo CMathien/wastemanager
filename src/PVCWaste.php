@@ -8,6 +8,11 @@ class PVCWaste extends Waste implements IncineratorInterface, PVCInterface, Plas
 {
 	private int $recyclingEmissions;
 
+	public function getName():string
+	{
+		return "plastique PVC";
+	}
+
 	/**
 	 * Get the value of recyclingEmissions
 	 */ 

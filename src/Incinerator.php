@@ -5,6 +5,11 @@ require_once "IncineratorInterface.php";
 class Incinerator extends Service implements IncineratorInterface
 {
 	private int $lines;
+
+	public function getName():string
+	{
+		return "incinérateur";
+	}
 	
 	/**
 	 * Get the value of lines
@@ -49,7 +54,7 @@ class Incinerator extends Service implements IncineratorInterface
 			$waste->setQuantity(0);
 			echo $wasteQuantity . " tonnes de déchets ont été incinérées. Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . "<br>";
 			$this->setEmissions($this->getEmissions() + $wasteQuantity * $waste->getIncinerationEmissions());
-			$this->setWasteRepartition(get_class($waste), $wasteQuantity);
+			$this->setWasteRepartition($waste->getName(), $wasteQuantity);
 		}
 		else
 		{
@@ -58,7 +63,7 @@ class Incinerator extends Service implements IncineratorInterface
 			$waste->setQuantity($untreatedWaste);
 			echo $wasteQuantity - $untreatedWaste . " tonnes de déchets ont été incinérées. Il reste " . $untreatedWaste . " tonnes de déchets à traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . "<br>";
 			$this->setEmissions($this->getEmissions() + ($wasteQuantity - $untreatedWaste) * $waste->getIncinerationEmissions());
-			$this->setWasteRepartition(get_class($waste), $wasteQuantity - $untreatedWaste);
+			$this->setWasteRepartition($waste->getName(), $wasteQuantity - $untreatedWaste);
 		}
 		
 	}

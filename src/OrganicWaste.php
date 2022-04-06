@@ -7,6 +7,10 @@ class OrganicWaste extends Waste implements IncineratorInterface, CompostInterfa
 {
 	private int $compostEmissions;
 
+	public function getName():string
+	{
+		return "déchet organique";
+	}
 	/**
 	 * Get the value of compostEmissions
 	 */ 

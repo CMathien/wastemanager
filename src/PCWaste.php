@@ -8,6 +8,10 @@ class PCWaste extends Waste implements IncineratorInterface, PCInterface, Plasti
 {
 	private int $recyclingEmissions;
 
+	public function getName():string
+	{
+		return "plastique PC";
+	}
 	/**
 	 * Get the value of recyclingEmissions
 	 */ 

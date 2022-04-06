@@ -7,6 +7,11 @@ class GlassWaste extends Waste implements IncineratorInterface, GlassInterface
 {
 	private int $recyclingEmissions;
 
+	public function getName():string
+	{
+		return "verre";
+	}
+	
 	/**
 	 * Get the value of recyclingEmissions
 	 */ 
