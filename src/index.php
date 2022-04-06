@@ -5,4 +5,7 @@ $treatment = new Treatment("https://simplonline-v3-prod.s3.eu-west-3.amazonaws.c
 
 // $treatment->testCreationObjects();
 $treatment->sendWaste();
+$treatment->serviceCO2();
+$treatment->globalCO2();
+$treatment->wasteRepartition();
 

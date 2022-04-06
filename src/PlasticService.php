@@ -38,6 +38,8 @@ class PlasticService extends Service implements PlasticInterface
 				$this->setUsedCapacity($newUsedCapacity);
 				$waste->setQuantity(0);
 				echo $wasteQuantity . " tonnes de déchets ont été traitées (plastique). Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . "<br>";
+				$this->setEmissions($this->getEmissions() + $wasteQuantity * $waste->getRecyclingEmissions());
+				$this->setWasteRepartition(get_class($waste), $wasteQuantity);
 			}
 			else
 			{
@@ -45,6 +47,8 @@ class PlasticService extends Service implements PlasticInterface
 				$this->setUsedCapacity($this->getCapacity());
 				$waste->setQuantity($untreatedWaste);
 				echo $wasteQuantity - $untreatedWaste . " tonnes de déchets ont été traitées (plastique). Il reste " . $untreatedWaste . " tonnes de déchets à traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . "<br>";
+				$this->setEmissions($this->getEmissions() + ($wasteQuantity - $untreatedWaste) * $waste->getRecyclingEmissions());
+				$this->setWasteRepartition(get_class($waste), $wasteQuantity - $untreatedWaste);
 			}
 		}
 	}

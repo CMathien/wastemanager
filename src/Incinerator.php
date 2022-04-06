@@ -48,6 +48,8 @@ class Incinerator extends Service implements IncineratorInterface
 			$this->setUsedCapacity($newUsedCapacity);
 			$waste->setQuantity(0);
 			echo $wasteQuantity . " tonnes de déchets ont été incinérées. Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . "<br>";
+			$this->setEmissions($this->getEmissions() + $wasteQuantity * $waste->getIncinerationEmissions());
+			$this->setWasteRepartition(get_class($waste), $wasteQuantity);
 		}
 		else
 		{
@@ -55,6 +57,8 @@ class Incinerator extends Service implements IncineratorInterface
 			$this->setUsedCapacity($this->getCapacity());
 			$waste->setQuantity($untreatedWaste);
 			echo $wasteQuantity - $untreatedWaste . " tonnes de déchets ont été incinérées. Il reste " . $untreatedWaste . " tonnes de déchets à traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . "<br>";
+			$this->setEmissions($this->getEmissions() + ($wasteQuantity - $untreatedWaste) * $waste->getIncinerationEmissions());
+			$this->setWasteRepartition(get_class($waste), $wasteQuantity - $untreatedWaste);
 		}
 		
 	}

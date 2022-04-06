@@ -36,6 +36,8 @@ class GlassService extends Service implements GlassInterface
 			$this->setUsedCapacity($newUsedCapacity);
 			$waste->setQuantity(0);
 			echo $wasteQuantity . " tonnes de déchets ont été traitées (verre). Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . "<br>";
+			$this->setEmissions($this->getEmissions() + $wasteQuantity * $waste->getRecyclingEmissions());
+			$this->setWasteRepartition(get_class($waste), $wasteQuantity);
 		}
 		else
 		{
@@ -43,6 +45,8 @@ class GlassService extends Service implements GlassInterface
 			$this->setUsedCapacity($this->getCapacity());
 			$waste->setQuantity($untreatedWaste);
 			echo $wasteQuantity - $untreatedWaste . " tonnes de déchets ont été traitées (verre). Il reste " . $untreatedWaste . " tonnes de déchets à traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . "<br>";
+			$this->setEmissions($this->getEmissions() + ($wasteQuantity - $untreatedWaste) * $waste->getRecyclingEmissions());
+			$this->setWasteRepartition(get_class($waste), $wasteQuantity - $untreatedWaste);
 		}
 		
 	}

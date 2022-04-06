@@ -48,6 +48,9 @@ class Compost extends Service implements CompostInterface
 			$this->setUsedCapacity($newUsedCapacity);
 			$waste->setQuantity(0);
 			echo $wasteQuantity . " tonnes de déchets ont été compostées. Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . "<br>";
+			$this->setEmissions($this->getEmissions() + $wasteQuantity * $waste->getCompostEmissions());
+			$this->setWasteRepartition(get_class($waste), $wasteQuantity);
+
 		}
 		else
 		{
@@ -55,6 +58,8 @@ class Compost extends Service implements CompostInterface
 			$this->setUsedCapacity($this->getCapacity());
 			$waste->setQuantity($untreatedWaste);
 			echo $wasteQuantity - $untreatedWaste . " tonnes de déchets ont été compostées. Il reste " . $untreatedWaste . " tonnes de déchets à traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . "<br>";
+			$this->setEmissions($this->getEmissions() + ($wasteQuantity - $untreatedWaste) * $waste->getCompostEmissions());
+			$this->setWasteRepartition(get_class($waste), $wasteQuantity - $untreatedWaste);
 		}
 	}
 }

@@ -311,4 +311,30 @@ class Treatment
 			}
 		}
 	}
+
+	public function serviceCO2()
+	{
+		foreach ($this->services as $service )
+		{
+			$service->displayServiceEmissions();
+		}
+	}
+
+	public function globalCO2()
+	{
+		$globalEmissions = 0;
+		foreach ($this->services as $service )
+		{
+			$globalEmissions += $service->getEmissions();
+		}
+		echo "L'ensemble des services a émis ".number_format($globalEmissions,0,","," ")." tonnes de CO2.<br>";
+	}
+
+	public function wasteRepartition()
+	{
+		foreach ($this->services as $service )
+		{
+			$service->displayServiceWasteRepartition();
+		}
+	}
 }

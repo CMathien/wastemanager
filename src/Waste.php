@@ -65,4 +65,5 @@ abstract class Waste
 
 		return $this;
 	}
+
 }
