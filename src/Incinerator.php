@@ -47,14 +47,14 @@ class Incinerator extends Service implements IncineratorInterface
 			$newUsedCapacity = $this->getUsedCapacity() + $wasteQuantity;
 			$this->setUsedCapacity($newUsedCapacity);
 			$waste->setQuantity(0);
-			echo $wasteQuantity . " tonnes de déchets ont été incinérées. Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . PHP_EOL;
+			echo $wasteQuantity . " tonnes de dÃ©chets ont Ã©tÃ© incinÃ©rÃ©es. Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . "<br>";
 		}
 		else
 		{
 			$untreatedWaste = $wasteQuantity - $availableCapacity;
 			$this->setUsedCapacity($this->getCapacity());
 			$waste->setQuantity($untreatedWaste);
-			echo $wasteQuantity - $untreatedWaste . " tonnes de déchets ont été incinérées. Il reste " . $untreatedWaste . " tonnes de déchets à traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . PHP_EOL;
+			echo $wasteQuantity - $untreatedWaste . " tonnes de dÃ©chets ont Ã©tÃ© incinÃ©rÃ©es. Il reste " . $untreatedWaste . " tonnes de dÃ©chets Ã  traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . "<br>";
 		}
 		
 	}

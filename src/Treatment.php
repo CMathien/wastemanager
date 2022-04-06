@@ -253,6 +253,7 @@ class Treatment
 		$services = $obj->services;
 		$this->createServices($services);
 		$this->createNeighbourhoodWaste($neighbourhoods);
+		$this->orderServices();
 	}
 
 	public function testCreationObjects():void
@@ -262,6 +263,22 @@ class Treatment
 		var_dump($this->wastes);
 	}
 
+	public function orderServices():void
+	{
+		$services = $this->services;
+		$i = 0;
+		foreach ( $services as $service )
+		{
+			if ( $service instanceof Incinerator )
+			{
+				$service_to_move = $service;
+				unset($services[$i]);
+				array_push($services, $service_to_move);
+			}
+			$i++;
+		}
+		$this->services = $services;
+	}
 	public function sendWaste():void
 	{
 		if ( isset($this->wastes) && isset($this->services) )

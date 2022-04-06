@@ -20,4 +20,5 @@
 - 45m reviewing previous/ongoing projects & concepts
 - 45m seaking inspiration for a way to use interfaces
 - 1h30 implementing JsonInterface, working on method to distribute the waste
+06/04-22
 

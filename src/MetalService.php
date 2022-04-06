@@ -13,14 +13,14 @@ class MetalService extends Service implements MetalInterface
 			$newUsedCapacity = $this->getUsedCapacity() + $wasteQuantity;
 			$this->setUsedCapacity($newUsedCapacity);
 			$waste->setQuantity(0);
-			echo $wasteQuantity . " tonnes de déchets ont été traitées (métal). Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . PHP_EOL;
+			echo $wasteQuantity . " tonnes de dÃ©chets ont Ã©tÃ© traitÃ©es (mÃ©tal). Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . "<br>";
 		}
 		else
 		{
 			$untreatedWaste = $wasteQuantity - $availableCapacity;
 			$this->setUsedCapacity($this->getCapacity());
 			$waste->setQuantity($untreatedWaste);
-			echo $wasteQuantity - $untreatedWaste . " tonnes de déchets ont été traitées (métal). Il reste " . $untreatedWaste . " tonnes de déchets à traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . PHP_EOL;
+			echo $wasteQuantity - $untreatedWaste . " tonnes de dÃ©chets ont Ã©tÃ© traitÃ©es (mÃ©tal). Il reste " . $untreatedWaste . " tonnes de dÃ©chets Ã  traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . "<br>";
 		}
 		
 	}

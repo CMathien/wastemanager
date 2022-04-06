@@ -28,22 +28,24 @@ class PlasticService extends Service implements PlasticInterface
 
 	public function treatWaste(PlasticInterface $waste):void
 	{
-		$wasteQuantity = $waste->getQuantity();
-		$availableCapacity = $this->getCapacity() - $this->getUsedCapacity();
-		if ( $availableCapacity >= $wasteQuantity )
+		if ( in_array(str_replace("Waste","",get_class($waste)), $this->allowedPlastics) )
 		{
-			$newUsedCapacity = $this->getUsedCapacity() + $wasteQuantity;
-			$this->setUsedCapacity($newUsedCapacity);
-			$waste->setQuantity(0);
-			echo $wasteQuantity . " tonnes de déchets ont été traitées (plastique). Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . PHP_EOL;
+			$wasteQuantity = $waste->getQuantity();
+			$availableCapacity = $this->getCapacity() - $this->getUsedCapacity();
+			if ( $availableCapacity >= $wasteQuantity )
+			{
+				$newUsedCapacity = $this->getUsedCapacity() + $wasteQuantity;
+				$this->setUsedCapacity($newUsedCapacity);
+				$waste->setQuantity(0);
+				echo $wasteQuantity . " tonnes de dÃ©chets ont Ã©tÃ© traitÃ©es (plastique). Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . "<br>";
+			}
+			else
+			{
+				$untreatedWaste = $wasteQuantity - $availableCapacity;
+				$this->setUsedCapacity($this->getCapacity());
+				$waste->setQuantity($untreatedWaste);
+				echo $wasteQuantity - $untreatedWaste . " tonnes de dÃ©chets ont Ã©tÃ© traitÃ©es (plastique). Il reste " . $untreatedWaste . " tonnes de dÃ©chets Ã  traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . "<br>";
+			}
 		}
-		else
-		{
-			$untreatedWaste = $wasteQuantity - $availableCapacity;
-			$this->setUsedCapacity($this->getCapacity());
-			$waste->setQuantity($untreatedWaste);
-			echo $wasteQuantity - $untreatedWaste . " tonnes de déchets ont été traitées (plastique). Il reste " . $untreatedWaste . " tonnes de déchets à traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . PHP_EOL;
-		}
-		
 	}
 }
