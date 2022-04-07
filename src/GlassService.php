@@ -5,7 +5,12 @@ require_once "GlassInterface.php";
 class GlassService extends Service implements GlassInterface
 {
 	private bool $deposit;
-
+	
+	/**
+	 * get name
+	 *
+	 * @return string
+	 */
 	public function getName():string
 	{
 		return "service de recyclage spécial verre";
@@ -30,7 +35,13 @@ class GlassService extends Service implements GlassInterface
 
 		return $this;
 	}
-
+	
+	/**
+	 * treat waste
+	 *
+	 * @param  GlassInterface $waste
+	 * @return void
+	 */
 	public function treatWaste(GlassInterface $waste):void
 	{
 		$wasteQuantity = $waste->getQuantity();
@@ -40,18 +51,16 @@ class GlassService extends Service implements GlassInterface
 			$newUsedCapacity = $this->getUsedCapacity() + $wasteQuantity;
 			$this->setUsedCapacity($newUsedCapacity);
 			$waste->setQuantity(0);
-			echo $wasteQuantity . " tonnes de déchets ont été traitées (verre). Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . "<br>";
 			$this->setEmissions($this->getEmissions() + $wasteQuantity * $waste->getRecyclingEmissions());
-			$this->setWasteRepartition($waste->getName(), $wasteQuantity);
+			$this->addWasteRepartition($waste->getName(), $wasteQuantity);
 		}
 		else
 		{
 			$untreatedWaste = $wasteQuantity - $availableCapacity;
 			$this->setUsedCapacity($this->getCapacity());
 			$waste->setQuantity($untreatedWaste);
-			echo $wasteQuantity - $untreatedWaste . " tonnes de déchets ont été traitées (verre). Il reste " . $untreatedWaste . " tonnes de déchets à traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . "<br>";
 			$this->setEmissions($this->getEmissions() + ($wasteQuantity - $untreatedWaste) * $waste->getRecyclingEmissions());
-			$this->setWasteRepartition($waste->getName(), $wasteQuantity - $untreatedWaste);
+			$this->addWasteRepartition($waste->getName(), $wasteQuantity - $untreatedWaste);
 		}
 		
 	}

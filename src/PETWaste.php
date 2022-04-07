@@ -7,7 +7,12 @@ require_once "PlasticInterface.php";
 class PETWaste extends Waste implements IncineratorInterface, PETInterface, PlasticInterface
 {
 	private int $recyclingEmissions;
-
+	
+	/**
+	 * get name
+	 *
+	 * @return string
+	 */
 	public function getName():string
 	{
 		return "plastique PET";

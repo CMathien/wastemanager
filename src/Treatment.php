@@ -15,35 +15,47 @@ require_once "PCWaste.php";
 require_once "PEHDWaste.php";
 require_once "PETWaste.php";
 require_once "PVCWaste.php";
+require_once "Emissions.php";
 require_once "File.php";
 
 class Treatment
 {
-	private string $wasteList;
-	private string $emissionsList;
-	private array $services;
-	private array $neighbourhoods;
-	private array $wastes;
-
-	public function __construct($wasteList, $emissionsList)
-	{
-		$this->wasteList = $wasteList;
-		$this->emissionsList = $emissionsList;
-		$this->loadData();
-	}
-
+	private array $services = [];
+	private array $neighbourhoods = [];
+	private Emissions $emissions;
+	
 	
 	/**
-	 * readJSON
-	 *
-	 * @param  JSONInterface $file
-	 * @return Object
-	 */
-	public function readJson(JSONInterface $file): Object
+	 * Get the value of emissions
+	 */ 
+	public function getEmissions()
 	{
-		return $file->read();
+		return $this->emissions;
+	}
+
+	/**
+	 * Set the value of emissions
+	 *
+	 * @return  self
+	 */ 
+	public function setEmissions($emissions)
+	{
+		$this->emissions = $emissions;
+
+		return $this;
 	}
 	
+	public function addNeighbourhood(Neighbourhood $neighbourhood)
+	{
+		$this->neighbourhoods[] = $neighbourhood;
+		return $this;
+	}
+
+	public function addService(Service $service)
+	{
+		$this->services[] = $service;
+		return $this;
+	}
 	/**
 	 * Find carbon emissions values of waste type
 	 *
@@ -52,52 +64,52 @@ class Treatment
 	 */
 	private function findEmissionsValues(Waste $waste):Waste
 	{
-		$obj = $this->readJson(new File($this->emissionsList));
+		$ref = $this->getEmissions()->getEmissions();
 		$class = get_class($waste);
 		switch ($class)
 		{
 			case 'OtherWaste':
-				$waste->setIncinerationEmissions($obj->autre->incineration);
+				$waste->setIncinerationEmissions($ref->autre->incineration);
 				break;
 			case 'MetalWaste':
 				$waste
-					->setIncinerationEmissions($obj->metaux->incineration)
-					->setRecyclingEmissions($obj->metaux->recyclage);
+					->setIncinerationEmissions($ref->metaux->incineration)
+					->setRecyclingEmissions($ref->metaux->recyclage);
 				break;
 			case 'GlassWaste':
 				$waste
-					->setIncinerationEmissions($obj->verre->incineration)
-					->setRecyclingEmissions($obj->verre->recyclage);
+					->setIncinerationEmissions($ref->verre->incineration)
+					->setRecyclingEmissions($ref->verre->recyclage);
 				break;
 			case 'PaperWaste':
 				$waste
-					->setIncinerationEmissions($obj->papier->incineration)
-					->setRecyclingEmissions($obj->papier->recyclage);
+					->setIncinerationEmissions($ref->papier->incineration)
+					->setRecyclingEmissions($ref->papier->recyclage);
 				break;
 			case 'OrganicWaste':
 				$waste
-					->setIncinerationEmissions($obj->organique->incineration)
-					->setCompostEmissions($obj->organique->compostage);
+					->setIncinerationEmissions($ref->organique->incineration)
+					->setCompostEmissions($ref->organique->compostage);
 				break;
 			case 'PETWaste':
 				$waste
-					->setIncinerationEmissions($obj->plastiques->PET->incineration)
-					->setRecyclingEmissions($obj->plastiques->PET->recyclage);
+					->setIncinerationEmissions($ref->plastiques->PET->incineration)
+					->setRecyclingEmissions($ref->plastiques->PET->recyclage);
 				break;
 			case 'PVCWaste':
 				$waste
-					->setIncinerationEmissions($obj->plastiques->PVC->incineration)
-					->setRecyclingEmissions($obj->plastiques->PVC->recyclage);
+					->setIncinerationEmissions($ref->plastiques->PVC->incineration)
+					->setRecyclingEmissions($ref->plastiques->PVC->recyclage);
 				break;
 			case 'PCWaste':
 				$waste
-					->setIncinerationEmissions($obj->plastiques->PC->incineration)
-					->setRecyclingEmissions($obj->plastiques->PC->recyclage);
+					->setIncinerationEmissions($ref->plastiques->PC->incineration)
+					->setRecyclingEmissions($ref->plastiques->PC->recyclage);
 				break;
 			case 'PEHDWaste':
 				$waste
-					->setIncinerationEmissions($obj->plastiques->PEHD->incineration)
-					->setRecyclingEmissions($obj->plastiques->PEHD->recyclage);
+					->setIncinerationEmissions($ref->plastiques->PEHD->incineration)
+					->setRecyclingEmissions($ref->plastiques->PEHD->recyclage);
 				break;
 			default:
 				# code...
@@ -114,7 +126,6 @@ class Treatment
 	 */
 	function createServices(array $services):self
 	{
-		$listServices = [];
 		foreach ( $services as $service ) {
 			$newService = null;
 			switch ($service->type) {
@@ -157,10 +168,8 @@ class Treatment
 					break;
 			}
 			$newService->setUsedCapacity(0);
-			array_push($listServices, $newService);
+			$this->addService($newService);
 		}
-
-		$this->services = $listServices;
 		return $this;
 	}
 	
@@ -172,15 +181,12 @@ class Treatment
 	 */
 	public function createNeighbourhoodWaste(array $neighbourhoods):self
 	{
-		$listWastes = [];
-		$listNeighbourhoods = [];
-
 		foreach ($neighbourhoods as $neighbourhood)
 		{
 			$newNeighbourhood = null;
 			$newNeighbourhood = new Neighbourhood();
 			$newNeighbourhood->setPopulation($neighbourhood->population);
-			array_push($listNeighbourhoods, $newNeighbourhood);
+			$this->addNeighbourhood($newNeighbourhood);
 			
 			foreach ($neighbourhood as $key=>$value )
 			{
@@ -222,9 +228,8 @@ class Treatment
 									break;
 							}
 							$newWaste->setQuantity($val);
-							$newWaste->setNeighbourhood($newNeighbourhood);
 							$this->findEmissionsValues($newWaste);
-							array_push($listWastes, $newWaste);
+							$newNeighbourhood->addWaste($newWaste);
 						}
 						break;
 					
@@ -235,34 +240,47 @@ class Treatment
 				if ( isset($newWaste) && $newWaste != null && $key != "plastiques" )
 				{
 					$newWaste->setQuantity($value);
-					$newWaste->setNeighbourhood($newNeighbourhood);
 					$this->findEmissionsValues($newWaste);
-					array_push($listWastes, $newWaste);
+					$newNeighbourhood->addWaste($newWaste);
 				}
 			}
-			$this->neighbourhoods = $listNeighbourhoods;
-			$this->wastes = $listWastes;
 		}
 		return $this;
 	}
-
-	public function loadData()
+	
+	/**
+	 * load the services, the neigbourhoods and their wastes
+	 *
+	 * @param  JSONInterface $file
+	 * @return void
+	 */
+	public function loadData(JSONInterface $file):void
 	{
-		$obj = $this->readJson(new File($this->wasteList));
+		$obj = $file->read();
 		$neighbourhoods = $obj->quartiers;
 		$services = $obj->services;
 		$this->createServices($services);
 		$this->createNeighbourhoodWaste($neighbourhoods);
 		$this->orderServices();
 	}
-
+	
+	/**
+	 * Used to test the creation of neighbourhoods/services/wastes objects
+	 *
+	 * @return void
+	 */
 	public function testCreationObjects():void
 	{
 		var_dump($this->neighbourhoods);
 		var_dump($this->services);
 		var_dump($this->wastes);
 	}
-
+	
+	/**
+	 * Put Incinerator objects at the end of the array so that they are last treated
+	 *
+	 * @return void
+	 */
 	public function orderServices():void
 	{
 		$services = $this->services;
@@ -279,9 +297,15 @@ class Treatment
 		}
 		$this->services = $services;
 	}
-	public function sendWaste():void
+		
+	/**
+	 * dispatch the waste to the corresponding service
+	 *
+	 * @return void
+	 */
+	public function dispatchWaste():void
 	{
-		if ( isset($this->wastes) && isset($this->services) )
+		if ( isset($this->neighbourhoods) && isset($this->services) )
 		{
 			$serviceCapacity = 0;
 			$serviceUsedCapacity = 0;
@@ -292,35 +316,47 @@ class Treatment
 				while ( $serviceUsedCapacity < $serviceCapacity )
 				{
 					$interface = array_values(class_implements($service))[0];
-
-					foreach ( $this->wastes as $waste )
+					foreach ($this->neighbourhoods as $neighbourhood )
 					{
-						if ( $waste->getQuantity() > 0 && in_array($interface, class_implements($waste)) && $serviceUsedCapacity < $serviceCapacity )
+						foreach ( $neighbourhood->getWastes() as $waste )
 						{
-							$wasteQuantity = $waste->getQuantity();
-							$serviceUsedCapacity = $serviceUsedCapacity + $wasteQuantity;
-							$service->treatWaste($waste);
-							$serviceCapacity = $service->getCapacity();
-							$serviceUsedCapacity = $service->getUsedCapacity();
+							if ( $waste->getQuantity() > 0 && in_array($interface, class_implements($waste)) && $serviceUsedCapacity < $serviceCapacity )
+							{
+								$wasteQuantity = $waste->getQuantity();
+								$serviceUsedCapacity = $serviceUsedCapacity + $wasteQuantity;
+								$service->treatWaste($waste);
+								$serviceCapacity = $service->getCapacity();
+								$serviceUsedCapacity = $service->getUsedCapacity();
+							}
 						}
-						
 					}
+
 					$service->setUsedCapacity($serviceCapacity+1);
 					$serviceUsedCapacity = $service->getUsedCapacity();
 				}
 			}
 		}
 	}
-
-	public function serviceCO2()
+	
+	/**
+	 * Display the emissions of each service
+	 *
+	 * @return void
+	 */
+	public function emissionsByService():void
 	{
 		foreach ($this->services as $service )
 		{
 			$service->displayServiceEmissions();
 		}
 	}
-
-	public function globalCO2()
+	
+	/**
+	 * Display the global emissions
+	 *
+	 * @return void
+	 */
+	public function globalEmissions():void
 	{
 		$globalEmissions = 0;
 		foreach ($this->services as $service )
@@ -329,8 +365,13 @@ class Treatment
 		}
 		echo "L'ensemble des services a émis ".number_format($globalEmissions,0,","," ")." tonnes de CO2.<br>";
 	}
-
-	public function wasteRepartition()
+	
+	/**
+	 * Display the waste repartition in each service
+	 *
+	 * @return void
+	 */
+	public function wasteRepartition():void
 	{
 		foreach ($this->services as $service )
 		{
@@ -338,3 +379,4 @@ class Treatment
 		}
 	}
 }
+

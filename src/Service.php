@@ -4,14 +4,9 @@ abstract class Service
 {
 	protected int $capacity;
 	protected int $usedCapacity;
-	protected int $emissions;
-	protected array $wasteRepartition;
+	protected int $emissions = 0;
+	protected array $wasteRepartition = [];
 
-	public function __construct()
-	{
-		$this->emissions = 0;
-		$this->wasteRepartition = [];
-	}
 	/**
 	 * Get the value of capacity
 	 */ 
@@ -85,7 +80,7 @@ abstract class Service
 	 *
 	 * @return  self
 	 */ 
-	public function setWasteRepartition($key, $value)
+	public function addWasteRepartition($key, $value)
 	{
 		if ( array_key_exists($key, $this->wasteRepartition) )
 		{
@@ -98,13 +93,23 @@ abstract class Service
 		}
 		return $this;
 	}
-
-	public function displayServiceEmissions()
+	
+	/**
+	 * display the emissions for one service
+	 *
+	 * @return void
+	 */
+	public function displayServiceEmissions():void
 	{
 		echo ucfirst($this->getName())." : ".number_format($this->getEmissions(),0,","," ")." tonnes de CO2 rejetées<br>";
 	}
-
-	public function displayServiceWasteRepartition()
+	
+	/**
+	 * display the waste repartition for one service
+	 *
+	 * @return void
+	 */
+	public function displayServiceWasteRepartition():void
 	{
 		echo "<table><tr><th colspan=2>".ucfirst($this->getName())."</th><tr>";
 		foreach ( $this->getWasteRepartition() as $item => $value )

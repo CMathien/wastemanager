@@ -41,7 +41,13 @@ class Incinerator extends Service implements IncineratorInterface
 		$capacity = $capacity * $this->lines;
 		return parent::setCapacity($capacity);
 	}
-
+	
+	/**
+	 * treat waste
+	 *
+	 * @param  IncineratorInterface $waste
+	 * @return void
+	 */
 	public function treatWaste(IncineratorInterface $waste):void
 	{
 		$wasteQuantity = $waste->getQuantity();
@@ -51,18 +57,16 @@ class Incinerator extends Service implements IncineratorInterface
 			$newUsedCapacity = $this->getUsedCapacity() + $wasteQuantity;
 			$this->setUsedCapacity($newUsedCapacity);
 			$waste->setQuantity(0);
-			echo $wasteQuantity . " tonnes de déchets ont été incinérées. Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . "<br>";
 			$this->setEmissions($this->getEmissions() + $wasteQuantity * $waste->getIncinerationEmissions());
-			$this->setWasteRepartition($waste->getName(), $wasteQuantity);
+			$this->addWasteRepartition($waste->getName(), $wasteQuantity);
 		}
 		else
 		{
 			$untreatedWaste = $wasteQuantity - $availableCapacity;
 			$this->setUsedCapacity($this->getCapacity());
 			$waste->setQuantity($untreatedWaste);
-			echo $wasteQuantity - $untreatedWaste . " tonnes de déchets ont été incinérées. Il reste " . $untreatedWaste . " tonnes de déchets à traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . "<br>";
 			$this->setEmissions($this->getEmissions() + ($wasteQuantity - $untreatedWaste) * $waste->getIncinerationEmissions());
-			$this->setWasteRepartition($waste->getName(), $wasteQuantity - $untreatedWaste);
+			$this->addWasteRepartition($waste->getName(), $wasteQuantity - $untreatedWaste);
 		}
 		
 	}

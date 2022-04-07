@@ -6,7 +6,12 @@ require_once "MetalInterface.php";
 class MetalWaste extends Waste implements IncineratorInterface, MetalInterface
 {
 	private int $recyclingEmissions;
-
+	
+	/**
+	 * get name
+	 *
+	 * @return string
+	 */
 	public function getName():string
 	{
 		return "métal";

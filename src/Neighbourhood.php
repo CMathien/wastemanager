@@ -3,7 +3,19 @@
 class Neighbourhood
 {
 	private int $population;
-
+	private array $wastes = [];
+	
+	/**
+	 * add waste to array $wastes
+	 *
+	 * @param  Waste $waste
+	 * @return void
+	 */
+	public function addWaste(Waste $waste)
+	{
+		$this->wastes[] = $waste;
+		return $this;
+	}
 	/**
 	 * Get the value of population
 	 */ 
@@ -22,5 +34,15 @@ class Neighbourhood
 		$this->population = $population;
 
 		return $this;
+	}
+
+	/**
+	 * Get the value of wastes
+	 * 
+	 * @return  array
+	 */ 
+	public function getWastes():array
+	{
+		return $this->wastes;
 	}
 }

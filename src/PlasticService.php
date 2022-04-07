@@ -5,7 +5,12 @@ require_once "PlasticInterface.php";
 class PlasticService extends Service implements PlasticInterface
 {
 	private array $allowedPlastics;
-
+	
+	/**
+	 * get name
+	 *
+	 * @return string
+	 */
 	public function getName():string
 	{
 		$name = "service de recyclage spécial plastique";
@@ -15,6 +20,7 @@ class PlasticService extends Service implements PlasticInterface
 		}
 		return $name;
 	}
+	
 	/**
 	 * Get the value of allowedPlastics
 	 */ 
@@ -34,7 +40,13 @@ class PlasticService extends Service implements PlasticInterface
 
 		return $this;
 	}
-
+	
+	/**
+	 * treat waste
+	 *
+	 * @param  PlasticInterface $waste
+	 * @return void
+	 */
 	public function treatWaste(PlasticInterface $waste):void
 	{
 		if ( in_array(str_replace("Waste","",get_class($waste)), $this->allowedPlastics) )
@@ -46,18 +58,16 @@ class PlasticService extends Service implements PlasticInterface
 				$newUsedCapacity = $this->getUsedCapacity() + $wasteQuantity;
 				$this->setUsedCapacity($newUsedCapacity);
 				$waste->setQuantity(0);
-				echo $wasteQuantity . " tonnes de déchets ont été traitées (plastique). Nouveau remplissage : " . $newUsedCapacity . "/" . $this->getCapacity() . "<br>";
 				$this->setEmissions($this->getEmissions() + $wasteQuantity * $waste->getRecyclingEmissions());
-				$this->setWasteRepartition($waste->getName(), $wasteQuantity);
+				$this->addWasteRepartition($waste->getName(), $wasteQuantity);
 			}
 			else
 			{
 				$untreatedWaste = $wasteQuantity - $availableCapacity;
 				$this->setUsedCapacity($this->getCapacity());
 				$waste->setQuantity($untreatedWaste);
-				echo $wasteQuantity - $untreatedWaste . " tonnes de déchets ont été traitées (plastique). Il reste " . $untreatedWaste . " tonnes de déchets à traiter. Nouveau remplissage : " . $this->getUsedCapacity() . "/" . $this->getCapacity() . "<br>";
 				$this->setEmissions($this->getEmissions() + ($wasteQuantity - $untreatedWaste) * $waste->getRecyclingEmissions());
-				$this->setWasteRepartition($waste->getName(), $wasteQuantity - $untreatedWaste);
+				$this->addWasteRepartition($waste->getName(), $wasteQuantity - $untreatedWaste);
 			}
 		}
 	}

@@ -7,11 +7,17 @@ require_once "PlasticInterface.php";
 class PEHDWaste extends Waste implements IncineratorInterface, PEHDInterface, PlasticInterface
 {
 	private int $recyclingEmissions;
-
+	
+	/**
+	 * get name
+	 *
+	 * @return string
+	 */
 	public function getName():string
 	{
 		return "plastique PEHD";
 	}
+	
 	/**
 	 * Get the value of recyclingEmissions
 	 */ 

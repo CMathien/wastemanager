@@ -6,7 +6,12 @@ require_once "PaperInterface.php";
 class PaperWaste extends Waste implements IncineratorInterface, PaperInterface
 {
 	private int $recyclingEmissions;
-
+	
+	/**
+	 * get name
+	 *
+	 * @return string
+	 */
 	public function getName():string
 	{
 		return "papier";
