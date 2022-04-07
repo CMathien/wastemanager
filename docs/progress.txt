@@ -11,16 +11,16 @@
 - 1h reorganizing classes
 - 15m adding typing to existing classes
 - 2h45 creating Treatment class with methods to create Neighbourhood, Waste and Service objects by extracting data of JSON files
-04/04/2022 :
+04/04/22 :
 - 1h finishing to write the method to make Waste/Neighbouhood objects from JSON
 - 1h creating and implementing interfaces
 - 30m Working on tasks manager project to find a way to use the interfaces on a smaller project
 - 1h modifying the implementation of interfaces, looking at PHP functions that give infos about implemented interface
-05/04/2022 :
+05/04/22 :
 - 45m reviewing previous/ongoing projects & concepts
 - 45m seaking inspiration for a way to use interfaces
 - 1h30 implementing JsonInterface, working on method to distribute the waste
-06/04-22
-- 1h reviewing SOLID principle and Task Manager project
+06/04/22 :
+- 1h reviewing SOLID principles and Task Manager project
 - 2h15 Working on the methods to display the waste repartition, the global emissions, the service emissions
 

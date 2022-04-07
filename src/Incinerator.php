@@ -31,17 +31,16 @@ class Incinerator extends Service implements IncineratorInterface
 		return $this;
 	}
 
-	// /**
-	//  * Set the value of capacity
-	//  *
-	//  * @return  self
-	//  */ 
-	// public function setCapacity(int $capacity):self
-	// {
-	// 	$this->capacity = $capacity * $this->lines;
-
-	// 	return $this;
-	// }
+	/**
+	 * Set the value of capacity
+	 *
+	 * @return  self
+	 */ 
+	public function setCapacity(int $capacity):self
+	{
+		$capacity = $capacity * $this->lines;
+		return parent::setCapacity($capacity);
+	}
 
 	public function treatWaste(IncineratorInterface $waste):void
 	{

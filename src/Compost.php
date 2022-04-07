@@ -38,9 +38,8 @@ class Compost extends Service implements CompostInterface
 	 */ 
 	public function setCapacity(int $capacity):self
 	{
-		$this->capacity = $capacity * $this->boxes;
-
-		return $this;
+		$capacity = $capacity * $this->boxes;
+		return parent::setCapacity($capacity);
 	}
 
 	public function treatWaste(CompostInterface $waste):void
