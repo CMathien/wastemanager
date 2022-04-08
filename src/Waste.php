@@ -45,4 +45,9 @@ abstract class Waste
 		return $this;
 	}
 
+	public function getType():string
+	{
+		return str_replace("Waste","",get_class($this));
+	}
+
 }

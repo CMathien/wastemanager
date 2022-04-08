@@ -65,48 +65,48 @@ class Treatment
 	private function findEmissionsValues(Waste $waste):Waste
 	{
 		$ref = $this->getEmissions()->getEmissions();
-		$class = get_class($waste);
+		$class = $waste->getType();
 		switch ($class)
 		{
-			case 'OtherWaste':
+			case 'Other':
 				$waste->setIncinerationEmissions($ref->autre->incineration);
 				break;
-			case 'MetalWaste':
+			case 'Metal':
 				$waste
 					->setIncinerationEmissions($ref->metaux->incineration)
 					->setRecyclingEmissions($ref->metaux->recyclage);
 				break;
-			case 'GlassWaste':
+			case 'Glass':
 				$waste
 					->setIncinerationEmissions($ref->verre->incineration)
 					->setRecyclingEmissions($ref->verre->recyclage);
 				break;
-			case 'PaperWaste':
+			case 'Paper':
 				$waste
 					->setIncinerationEmissions($ref->papier->incineration)
 					->setRecyclingEmissions($ref->papier->recyclage);
 				break;
-			case 'OrganicWaste':
+			case 'Organic':
 				$waste
 					->setIncinerationEmissions($ref->organique->incineration)
 					->setCompostEmissions($ref->organique->compostage);
 				break;
-			case 'PETWaste':
+			case 'PET':
 				$waste
 					->setIncinerationEmissions($ref->plastiques->PET->incineration)
 					->setRecyclingEmissions($ref->plastiques->PET->recyclage);
 				break;
-			case 'PVCWaste':
+			case 'PVC':
 				$waste
 					->setIncinerationEmissions($ref->plastiques->PVC->incineration)
 					->setRecyclingEmissions($ref->plastiques->PVC->recyclage);
 				break;
-			case 'PCWaste':
+			case 'PC':
 				$waste
 					->setIncinerationEmissions($ref->plastiques->PC->incineration)
 					->setRecyclingEmissions($ref->plastiques->PC->recyclage);
 				break;
-			case 'PEHDWaste':
+			case 'PEHD':
 				$waste
 					->setIncinerationEmissions($ref->plastiques->PEHD->incineration)
 					->setRecyclingEmissions($ref->plastiques->PEHD->recyclage);

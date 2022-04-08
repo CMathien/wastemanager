@@ -49,7 +49,7 @@ class PlasticService extends Service implements PlasticInterface
 	 */
 	public function treatWaste(PlasticInterface $waste):void
 	{
-		if ( in_array(str_replace("Waste","",get_class($waste)), $this->allowedPlastics) )
+		if ( in_array($waste->getType(), $this->allowedPlastics) )
 		{
 			$wasteQuantity = $waste->getQuantity();
 			$availableCapacity = $this->getCapacity() - $this->getUsedCapacity();
