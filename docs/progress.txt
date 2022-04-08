@@ -28,5 +28,8 @@
 - 2h15 refactoring the classes and methods to reduce the dependencies between them
 - 30m cleaning the code and controlling that the global emissions match the total of each service emissions
 08/04/22 :
--  
+- 10m+10m implementing a getType() method in Waste class to return the clean classname, new modifications after implementing namespaces
+- 15m simplifying the methods I used to create my Emissions by Service array
+- 1h restructuring the project, implementing namespaces and adding an autoload file
+
 
