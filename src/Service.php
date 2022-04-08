@@ -82,15 +82,13 @@ abstract class Service
 	 */ 
 	public function addWasteRepartition($key, $value)
 	{
-		if ( array_key_exists($key, $this->wasteRepartition) )
+		if ( !isset($this->wasteRepartition[$key]) )
 		{
-			$old = $this->getWasteRepartition()[$key];
-			$this->wasteRepartition[$key] = $old + $value;
+			$this->wasteRepartition[$key] = 0;
+
 		}
-		else
-		{
-			$this->wasteRepartition[$key] = $value;
-		}
+		$this->wasteRepartition[$key] += $value;
+		
 		return $this;
 	}
 	
@@ -101,7 +99,7 @@ abstract class Service
 	 */
 	public function displayServiceEmissions():void
 	{
-		echo ucfirst($this->getName())." : ".number_format($this->getEmissions(),0,","," ")." tonnes de CO2 rejetées<br>";
+		echo ucfirst($this->getName())." : ".number_format($this->getEmissions(),0,","," ")." t de CO2<br>";
 	}
 	
 	/**
@@ -112,9 +110,16 @@ abstract class Service
 	public function displayServiceWasteRepartition():void
 	{
 		echo "<table><tr><th colspan=2>".ucfirst($this->getName())."</th><tr>";
-		foreach ( $this->getWasteRepartition() as $item => $value )
+		if ( !empty($this->getWasteRepartition()) )
 		{
-			echo "<tr><td>".ucfirst($item)."</td><td>".number_format($value,0,","," ")." t</td></tr>";
+			foreach ( $this->getWasteRepartition() as $item => $value )
+			{
+				echo "<tr><td>".ucfirst($item)."</td><td>".number_format($value,0,","," ")." t</td></tr>";
+			}
+		}
+		else 
+		{
+			echo "<tr><td colspan=2>Aucun déchet traité par ce service</td></tr>";
 		}
 	}
 }

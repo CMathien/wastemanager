@@ -26,5 +26,7 @@
 07/04/22 :
 - 45m completing the methods of the TaskManager project and jot down the ppoints that could be implemented in Waste manager project
 - 2h15 refactoring the classes and methods to reduce the dependencies between them
-- 30m cleaning the code and controlling that the global emissions match the total of each service emissions 
+- 30m cleaning the code and controlling that the global emissions match the total of each service emissions
+08/04/22 :
+-  
 

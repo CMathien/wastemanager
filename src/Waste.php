@@ -44,7 +44,12 @@ abstract class Waste
 
 		return $this;
 	}
-
+	
+	/**
+	 * return type of waste
+	 *
+	 * @return string
+	 */
 	public function getType():string
 	{
 		return str_replace("Waste","",get_class($this));
