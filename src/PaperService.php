@@ -1,8 +1,8 @@
 <?php
-require_once "Service.php";
+require_once "AbstractService.php";
 require_once "PaperInterface.php";
 
-class PaperService extends Service implements PaperInterface
+class PaperService extends AbstractService implements PaperInterface
 {	
 	/**
 	 * get name

@@ -44,14 +44,26 @@ class Treatment
 
 		return $this;
 	}
-	
+		
+	/**
+	 * add a neighbourhood
+	 *
+	 * @param  Neighbourhood $neighbourhood
+	 * @return void
+	 */
 	public function addNeighbourhood(Neighbourhood $neighbourhood)
 	{
 		$this->neighbourhoods[] = $neighbourhood;
 		return $this;
 	}
-
-	public function addService(Service $service)
+	
+	/**
+	 * add a service
+	 *
+	 * @param  AbstractService $service
+	 * @return void
+	 */
+	public function addService(AbstractService $service)
 	{
 		$this->services[] = $service;
 		return $this;
@@ -59,10 +71,10 @@ class Treatment
 	/**
 	 * Find carbon emissions values of waste type
 	 *
-	 * @param  Waste $waste
+	 * @param  AbstractWaste $waste
 	 * @return void
 	 */
-	private function findEmissionsValues(Waste $waste):Waste
+	private function findEmissionsValues(AbstractWaste $waste):AbstractWaste
 	{
 		$ref = $this->getEmissions()->getEmissions();
 		$class = $waste->getType();

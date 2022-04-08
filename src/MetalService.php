@@ -1,8 +1,8 @@
 <?php
-require_once "Service.php";
+require_once "AbstractService.php";
 require_once "MetalInterface.php";
 
-class MetalService extends Service implements MetalInterface
+class MetalService extends AbstractService implements MetalInterface
 {	
 	/**
 	 * get name

@@ -1,8 +1,8 @@
 <?php
-require_once "Service.php";
+require_once "AbstractService.php";
 require_once "CompostInterface.php";
 
-class Compost extends Service implements CompostInterface
+class Compost extends AbstractService implements CompostInterface
 {
 	private int $boxes;
 		

@@ -8,10 +8,10 @@ class Neighbourhood
 	/**
 	 * add waste to array $wastes
 	 *
-	 * @param  Waste $waste
+	 * @param  AbstractWaste $waste
 	 * @return void
 	 */
-	public function addWaste(Waste $waste)
+	public function addWaste(AbstractWaste $waste)
 	{
 		$this->wastes[] = $waste;
 		return $this;

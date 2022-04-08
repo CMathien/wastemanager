@@ -1,8 +1,8 @@
 <?php
-require_once "Service.php";
+require_once "AbstractService.php";
 require_once "GlassInterface.php";
 
-class GlassService extends Service implements GlassInterface
+class GlassService extends AbstractService implements GlassInterface
 {
 	private bool $deposit;
 	

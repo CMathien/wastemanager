@@ -1,6 +1,6 @@
 <?php
 
-abstract class Waste
+abstract class AbstractWaste
 {
 	private int $incinerationEmissions;
 	private int $quantity;
@@ -18,7 +18,7 @@ abstract class Waste
 	 *
 	 * @return  self
 	 */ 
-	public function setIncinerationEmissions(int $incinerationEmissions):Waste
+	public function setIncinerationEmissions(int $incinerationEmissions):AbstractWaste
 	{
 		$this->incinerationEmissions = $incinerationEmissions;
 

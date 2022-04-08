@@ -1,8 +1,8 @@
 <?php
-require_once "Service.php";
+require_once "AbstractService.php";
 require_once "PlasticInterface.php";
 
-class PlasticService extends Service implements PlasticInterface
+class PlasticService extends AbstractService implements PlasticInterface
 {
 	private array $allowedPlastics;
 	

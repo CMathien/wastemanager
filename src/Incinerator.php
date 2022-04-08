@@ -1,8 +1,8 @@
 <?php
-require_once "Service.php";
+require_once "AbstractService.php";
 require_once "IncineratorInterface.php";
 
-class Incinerator extends Service implements IncineratorInterface
+class Incinerator extends AbstractService implements IncineratorInterface
 {
 	private int $lines;
 

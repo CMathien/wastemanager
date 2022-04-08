@@ -1,9 +1,9 @@
 <?php
-require_once "Waste.php";
+require_once "AbstractWaste.php";
 require_once "IncineratorInterface.php";
 require_once "GlassInterface.php";
 
-class GlassWaste extends Waste implements IncineratorInterface, GlassInterface
+class GlassWaste extends AbstractWaste implements IncineratorInterface, GlassInterface
 {
 	private int $recyclingEmissions;
 

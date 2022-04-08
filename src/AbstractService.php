@@ -1,6 +1,6 @@
 <?php
 
-abstract class Service
+abstract class AbstractService
 {
 	protected int $capacity;
 	protected int $usedCapacity;

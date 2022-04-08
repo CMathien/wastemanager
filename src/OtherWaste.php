@@ -1,8 +1,8 @@
 <?php
-require_once "Waste.php";
+require_once "AbstractWaste.php";
 require_once "IncineratorInterface.php";
 
-class OtherWaste extends Waste implements IncineratorInterface
+class OtherWaste extends AbstractWaste implements IncineratorInterface
 {
 	public function getName():string
 	{
