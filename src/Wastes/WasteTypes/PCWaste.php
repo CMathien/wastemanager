@@ -13,7 +13,7 @@ class PCWaste extends AbstractWaste implements IncineratorInterface, PCInterface
 	 *
 	 * @return string
 	 */
-	public function getName():string
+	public function getName(): string
 	{
 		return "plastique PC";
 	}
@@ -21,7 +21,7 @@ class PCWaste extends AbstractWaste implements IncineratorInterface, PCInterface
 	/**
 	 * Get the value of recyclingEmissions
 	 */ 
-	public function getRecyclingEmissions():int
+	public function getRecyclingEmissions(): int
 	{
 		return $this->recyclingEmissions;
 	}
@@ -29,12 +29,11 @@ class PCWaste extends AbstractWaste implements IncineratorInterface, PCInterface
 	/**
 	 * Set the value of recyclingEmissions
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function setRecyclingEmissions(int $recyclingEmissions):self
+	public function setRecyclingEmissions(int $recyclingEmissions): self
 	{
 		$this->recyclingEmissions = $recyclingEmissions;
-
 		return $this;
 	}
 }

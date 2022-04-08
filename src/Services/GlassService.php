@@ -13,7 +13,7 @@ class GlassService extends AbstractService implements GlassInterface
 	 *
 	 * @return string
 	 */
-	public function getName():string
+	public function getName(): string
 	{
 		return "service de recyclage spécial verre";
 	}
@@ -21,7 +21,7 @@ class GlassService extends AbstractService implements GlassInterface
 	/**
 	 * Get the value of deposit
 	 */ 
-	public function getDeposit():bool
+	public function getDeposit(): bool
 	{
 		return $this->deposit;
 	}
@@ -31,7 +31,7 @@ class GlassService extends AbstractService implements GlassInterface
 	 *
 	 * @return  self
 	 */ 
-	public function setDeposit(bool $deposit):self
+	public function setDeposit(bool $deposit): self
 	{
 		$this->deposit = $deposit;
 
@@ -44,7 +44,7 @@ class GlassService extends AbstractService implements GlassInterface
 	 * @param  GlassInterface $waste
 	 * @return void
 	 */
-	public function treatWaste(GlassInterface $waste):void
+	public function treatWaste(GlassInterface $waste): void
 	{
 		$wasteQuantity = $waste->getQuantity();
 		$availableCapacity = $this->getCapacity() - $this->getUsedCapacity();
@@ -64,6 +64,5 @@ class GlassService extends AbstractService implements GlassInterface
 			$this->setEmissions($this->getEmissions() + ($wasteQuantity - $untreatedWaste) * $waste->getRecyclingEmissions());
 			$this->addWasteRepartition($waste->getName(), $wasteQuantity - $untreatedWaste);
 		}
-		
 	}
 }

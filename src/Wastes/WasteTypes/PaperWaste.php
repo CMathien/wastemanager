@@ -13,7 +13,7 @@ class PaperWaste extends AbstractWaste implements IncineratorInterface, PaperInt
 	 *
 	 * @return string
 	 */
-	public function getName():string
+	public function getName(): string
 	{
 		return "papier";
 	}
@@ -21,7 +21,7 @@ class PaperWaste extends AbstractWaste implements IncineratorInterface, PaperInt
 	/**
 	 * Get the value of recyclingEmissions
 	 */ 
-	public function getRecyclingEmissions():int
+	public function getRecyclingEmissions(): int
 	{
 		return $this->recyclingEmissions;
 	}
@@ -29,12 +29,11 @@ class PaperWaste extends AbstractWaste implements IncineratorInterface, PaperInt
 	/**
 	 * Set the value of recyclingEmissions
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function setRecyclingEmissions(int $recyclingEmissions):self
+	public function setRecyclingEmissions(int $recyclingEmissions): self
 	{
 		$this->recyclingEmissions = $recyclingEmissions;
-
 		return $this;
 	}
 }

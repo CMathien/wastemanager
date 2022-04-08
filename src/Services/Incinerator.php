@@ -7,8 +7,13 @@ use Wastes\WasteServiceInterfaces\IncineratorInterface;
 class Incinerator extends AbstractService implements IncineratorInterface
 {
 	private int $lines;
-
-	public function getName():string
+	
+	/**
+	 * get name
+	 *
+	 * @return string
+	 */
+	public function getName(): string
 	{
 		return "incinérateur";
 	}
@@ -16,7 +21,7 @@ class Incinerator extends AbstractService implements IncineratorInterface
 	/**
 	 * Get the value of lines
 	 */ 
-	public function getLines():int
+	public function getLines(): int
 	{
 		return $this->lines;
 	}
@@ -24,9 +29,9 @@ class Incinerator extends AbstractService implements IncineratorInterface
 	/**
 	 * Set the value of lines
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function setLines(int $lines):self
+	public function setLines(int $lines): self
 	{
 		$this->lines = $lines;
 
@@ -36,9 +41,9 @@ class Incinerator extends AbstractService implements IncineratorInterface
 	/**
 	 * Set the value of capacity
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function setCapacity(int $capacity):self
+	public function setCapacity(int $capacity): self
 	{
 		$capacity = $capacity * $this->lines;
 		return parent::setCapacity($capacity);
@@ -47,10 +52,10 @@ class Incinerator extends AbstractService implements IncineratorInterface
 	/**
 	 * treat waste
 	 *
-	 * @param  IncineratorInterface $waste
+	 * @param IncineratorInterface $waste
 	 * @return void
 	 */
-	public function treatWaste(IncineratorInterface $waste):void
+	public function treatWaste(IncineratorInterface $waste): void
 	{
 		$wasteQuantity = $waste->getQuantity();
 		$availableCapacity = $this->getCapacity() - $this->getUsedCapacity();
@@ -70,6 +75,5 @@ class Incinerator extends AbstractService implements IncineratorInterface
 			$this->setEmissions($this->getEmissions() + ($wasteQuantity - $untreatedWaste) * $waste->getIncinerationEmissions());
 			$this->addWasteRepartition($waste->getName(), $wasteQuantity - $untreatedWaste);
 		}
-		
 	}
 }

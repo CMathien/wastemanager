@@ -11,7 +11,7 @@ class MetalService extends AbstractService implements MetalInterface
 	 *
 	 * @return string
 	 */
-	public function getName():string
+	public function getName(): string
 	{
 		return "service de recyclage spécial métal";
 	}
@@ -19,10 +19,10 @@ class MetalService extends AbstractService implements MetalInterface
 	/**
 	 * treat waste
 	 *
-	 * @param  MetalInterface $waste
+	 * @param MetalInterface $waste
 	 * @return void
 	 */
-	public function treatWaste(MetalInterface $waste):void
+	public function treatWaste(MetalInterface $waste): void
 	{
 		$wasteQuantity = $waste->getQuantity();
 		$availableCapacity = $this->getCapacity() - $this->getUsedCapacity();
@@ -42,6 +42,5 @@ class MetalService extends AbstractService implements MetalInterface
 			$this->setEmissions($this->getEmissions() + ($wasteQuantity - $untreatedWaste) * $waste->getRecyclingEmissions());
 			$this->addWasteRepartition($waste->getName(), $wasteQuantity - $untreatedWaste);
 		}
-		
 	}
 }

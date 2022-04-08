@@ -11,7 +11,7 @@ class PaperService extends AbstractService implements PaperInterface
 	 *
 	 * @return string
 	 */
-	public function getName():string
+	public function getName(): string
 	{
 		return "service de recyclage spécial papier";
 	}
@@ -19,10 +19,10 @@ class PaperService extends AbstractService implements PaperInterface
 	/**
 	 * treat waste
 	 *
-	 * @param  PaperInterface $waste
+	 * @param PaperInterface $waste
 	 * @return void
 	 */
-	public function treatWaste(PaperInterface $waste):void
+	public function treatWaste(PaperInterface $waste): void
 	{
 		$wasteQuantity = $waste->getQuantity();
 		$availableCapacity = $this->getCapacity() - $this->getUsedCapacity();
@@ -42,6 +42,5 @@ class PaperService extends AbstractService implements PaperInterface
 			$this->setEmissions($this->getEmissions() + ($wasteQuantity - $untreatedWaste) * $waste->getRecyclingEmissions());
 			$this->addWasteRepartition($waste->getName(), $wasteQuantity - $untreatedWaste);
 		}
-		
 	}
 }

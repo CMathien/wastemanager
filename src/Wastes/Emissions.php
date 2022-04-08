@@ -10,10 +10,10 @@ class Emissions
 	/**
 	 * load the values of JSON file in $emissions
 	 *
-	 * @param  JSONInterface $file
+	 * @param JSONInterface $file
 	 * @return self
 	 */
-	public function loadFile(JSONInterface $file):self
+	public function loadFile(JSONInterface $file): self
 	{
 		$emissions = $file->read();
 		$this->emissions = $emissions;
@@ -25,7 +25,7 @@ class Emissions
 	 *
 	 * @return Object
 	 */
-	public function getEmissions():Object
+	public function getEmissions(): Object
 	{
 		return $this->emissions;
 	}

@@ -7,8 +7,13 @@ use Wastes\WasteServiceInterfaces\{IncineratorInterface,GlassInterface};
 class GlassWaste extends AbstractWaste implements IncineratorInterface, GlassInterface
 {
 	private int $recyclingEmissions;
-
-	public function getName():string
+	
+	/**
+	 * get name
+	 *
+	 * @return string
+	 */
+	public function getName(): string
 	{
 		return "verre";
 	}
@@ -16,7 +21,7 @@ class GlassWaste extends AbstractWaste implements IncineratorInterface, GlassInt
 	/**
 	 * Get the value of recyclingEmissions
 	 */ 
-	public function getRecyclingEmissions():int
+	public function getRecyclingEmissions(): int
 	{
 		return $this->recyclingEmissions;
 	}
@@ -24,12 +29,11 @@ class GlassWaste extends AbstractWaste implements IncineratorInterface, GlassInt
 	/**
 	 * Set the value of recyclingEmissions
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function setRecyclingEmissions(int $recyclingEmissions):self
+	public function setRecyclingEmissions(int $recyclingEmissions): self
 	{
 		$this->recyclingEmissions = $recyclingEmissions;
-
 		return $this;
 	}
 }

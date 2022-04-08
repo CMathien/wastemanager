@@ -7,15 +7,20 @@ use Wastes\WasteServiceInterfaces\{IncineratorInterface,CompostInterface};
 class OrganicWaste extends AbstractWaste implements IncineratorInterface, CompostInterface
 {
 	private int $compostEmissions;
-
-	public function getName():string
+	
+	/**
+	 * get name
+	 *
+	 * @return string
+	 */
+	public function getName(): string
 	{
 		return "déchet organique";
 	}
 	/**
 	 * Get the value of compostEmissions
 	 */ 
-	public function getCompostEmissions():int
+	public function getCompostEmissions(): int
 	{
 		return $this->compostEmissions;
 	}
@@ -23,12 +28,11 @@ class OrganicWaste extends AbstractWaste implements IncineratorInterface, Compos
 	/**
 	 * Set the value of compostEmissions
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function setCompostEmissions(int $compostEmissions):self
+	public function setCompostEmissions(int $compostEmissions): self
 	{
 		$this->compostEmissions = $compostEmissions;
-
 		return $this;
 	}
 }

@@ -13,14 +13,14 @@ class MetalWaste extends AbstractWaste implements IncineratorInterface, MetalInt
 	 *
 	 * @return string
 	 */
-	public function getName():string
+	public function getName(): string
 	{
 		return "métal";
 	}
 	/**
 	 * Get the value of recyclingEmissions
 	 */ 
-	public function getRecyclingEmissions():int
+	public function getRecyclingEmissions(): int
 	{
 		return $this->recyclingEmissions;
 	}
@@ -30,10 +30,9 @@ class MetalWaste extends AbstractWaste implements IncineratorInterface, MetalInt
 	 *
 	 * @return  self
 	 */ 
-	public function setRecyclingEmissions(int $recyclingEmissions):self
+	public function setRecyclingEmissions(int $recyclingEmissions): self
 	{
 		$this->recyclingEmissions = $recyclingEmissions;
-
 		return $this;
 	}
 }

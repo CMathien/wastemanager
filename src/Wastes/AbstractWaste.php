@@ -1,5 +1,4 @@
 <?php
-
 namespace Wastes;
 
 abstract class AbstractWaste
@@ -10,7 +9,7 @@ abstract class AbstractWaste
 	/**
 	 * Get the value of incinerationEmissions
 	 */ 
-	public function getIncinerationEmissions():int
+	public function getIncinerationEmissions(): int
 	{
 		return $this->incinerationEmissions;
 	}
@@ -18,9 +17,9 @@ abstract class AbstractWaste
 	/**
 	 * Set the value of incinerationEmissions
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function setIncinerationEmissions(int $incinerationEmissions):AbstractWaste
+	public function setIncinerationEmissions(int $incinerationEmissions): self
 	{
 		$this->incinerationEmissions = $incinerationEmissions;
 
@@ -30,7 +29,7 @@ abstract class AbstractWaste
 	/**
 	 * Get the value of quantity
 	 */ 
-	public function getQuantity()
+	public function getQuantity(): int
 	{
 		return $this->quantity;
 	}
@@ -38,12 +37,11 @@ abstract class AbstractWaste
 	/**
 	 * Set the value of quantity
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function setQuantity($quantity)
+	public function setQuantity($quantity): self
 	{
 		$this->quantity = $quantity;
-
 		return $this;
 	}
 	
@@ -52,10 +50,9 @@ abstract class AbstractWaste
 	 *
 	 * @return string
 	 */
-	public function getType():string
+	public function getType(): string
 	{
 		$classname = explode("\\",get_class($this));
 		return str_replace("Waste","",end($classname));
 	}
-
 }

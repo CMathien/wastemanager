@@ -13,7 +13,7 @@ class PlasticService extends AbstractService implements PlasticInterface
 	 *
 	 * @return string
 	 */
-	public function getName():string
+	public function getName(): string
 	{
 		$name = "service de recyclage spécial plastique";
 		if (isset($this->allowedPlastics))
@@ -26,7 +26,7 @@ class PlasticService extends AbstractService implements PlasticInterface
 	/**
 	 * Get the value of allowedPlastics
 	 */ 
-	public function getAllowedPlastics():array
+	public function getAllowedPlastics(): array
 	{
 		return $this->allowedPlastics;
 	}
@@ -34,9 +34,9 @@ class PlasticService extends AbstractService implements PlasticInterface
 	/**
 	 * Set the value of allowedPlastics
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function setAllowedPlastics(array $allowedPlastics):self
+	public function setAllowedPlastics(array $allowedPlastics): self
 	{
 		$this->allowedPlastics = $allowedPlastics;
 
@@ -46,10 +46,10 @@ class PlasticService extends AbstractService implements PlasticInterface
 	/**
 	 * treat waste
 	 *
-	 * @param  PlasticInterface $waste
+	 * @param PlasticInterface $waste
 	 * @return void
 	 */
-	public function treatWaste(PlasticInterface $waste):void
+	public function treatWaste(PlasticInterface $waste): void
 	{
 		if ( in_array($waste->getType(), $this->allowedPlastics) )
 		{

@@ -16,7 +16,7 @@ class Treatment
 	/**
 	 * Get the values of emissions
 	 */ 
-	public function getEmissions():Emissions
+	public function getEmissions(): Emissions
 	{
 		return $this->emissions;
 	}
@@ -24,9 +24,9 @@ class Treatment
 	/**
 	 * Set the value of emissions
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function setEmissions($emissions):self
+	public function setEmissions($emissions): self
 	{
 		$this->emissions = $emissions;
 
@@ -36,10 +36,10 @@ class Treatment
 	/**
 	 * add a neighbourhood
 	 *
-	 * @param  Neighbourhood $neighbourhood
+	 * @param Neighbourhood $neighbourhood
 	 * @return self
 	 */
-	public function addNeighbourhood(Neighbourhood $neighbourhood):self
+	public function addNeighbourhood(Neighbourhood $neighbourhood): self
 	{
 		$this->neighbourhoods[] = $neighbourhood;
 		return $this;
@@ -48,10 +48,10 @@ class Treatment
 	/**
 	 * add a service
 	 *
-	 * @param  AbstractService $service
+	 * @param AbstractService $service
 	 * @return self
 	 */
-	public function addService(AbstractService $service):self
+	public function addService(AbstractService $service): self
 	{
 		$this->services[] = $service;
 		return $this;
@@ -59,10 +59,10 @@ class Treatment
 	/**
 	 * Find carbon emissions values of waste type
 	 *
-	 * @param  AbstractWaste $waste
+	 * @param AbstractWaste $waste
 	 * @return void
 	 */
-	private function findEmissionsValues(AbstractWaste $waste):AbstractWaste
+	private function findEmissionsValues(AbstractWaste $waste): AbstractWaste
 	{
 		$ref = $this->getEmissions()->getEmissions();
 		$class = $waste->getType();
@@ -121,10 +121,10 @@ class Treatment
 	/**
 	 * Create waste treatment services
 	 *
-	 * @param  array $services
+	 * @param array $services
 	 * @return self
 	 */
-	function createServices(array $services):self
+	function createServices(array $services): self
 	{
 		foreach ( $services as $service ) {
 			$newService = null;
@@ -176,10 +176,10 @@ class Treatment
 	/**
 	 * Create the neighbouhoods and wastes
 	 *
-	 * @param  array $neighbourhoods
+	 * @param array $neighbourhoods
 	 * @return self
 	 */
-	public function createNeighbourhoodWaste(array $neighbourhoods):self
+	public function createNeighbourhoodWaste(array $neighbourhoods): self
 	{
 		foreach ($neighbourhoods as $neighbourhood)
 		{
@@ -251,10 +251,10 @@ class Treatment
 	/**
 	 * load the services, the neigbourhoods and their wastes
 	 *
-	 * @param  JSONInterface $file
+	 * @param JSONInterface $file
 	 * @return void
 	 */
-	public function loadData(JSONInterface $file):void
+	public function loadData(JSONInterface $file): void
 	{
 		$obj = $file->read();
 		$neighbourhoods = $obj->quartiers;
@@ -269,7 +269,7 @@ class Treatment
 	 *
 	 * @return void
 	 */
-	public function testCreationObjects():void
+	public function testCreationObjects(): void
 	{
 		var_dump($this->neighbourhoods);
 		var_dump($this->services);
@@ -281,7 +281,7 @@ class Treatment
 	 *
 	 * @return void
 	 */
-	public function orderServices():void
+	public function orderServices(): void
 	{
 		$services = $this->services;
 		$i = 0;
@@ -303,7 +303,7 @@ class Treatment
 	 *
 	 * @return void
 	 */
-	public function dispatchWaste():void
+	public function dispatchWaste(): void
 	{
 		if ( isset($this->neighbourhoods) && isset($this->services) )
 		{
@@ -343,7 +343,7 @@ class Treatment
 	 *
 	 * @return void
 	 */
-	public function emissionsByService():void
+	public function emissionsByService(): void
 	{
 		foreach ($this->services as $service )
 		{
@@ -356,7 +356,7 @@ class Treatment
 	 *
 	 * @return void
 	 */
-	public function globalEmissions():void
+	public function globalEmissions(): void
 	{
 		$globalEmissions = 0;
 		foreach ($this->services as $service )
@@ -371,7 +371,7 @@ class Treatment
 	 *
 	 * @return void
 	 */
-	public function wasteRepartition():void
+	public function wasteRepartition(): void
 	{
 		foreach ($this->services as $service )
 		{

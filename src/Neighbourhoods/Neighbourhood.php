@@ -11,18 +11,21 @@ class Neighbourhood
 	/**
 	 * add waste to array $wastes
 	 *
-	 * @param  AbstractWaste $waste
-	 * @return void
+	 * @param AbstractWaste $waste
+	 * @return self
 	 */
-	public function addWaste(AbstractWaste $waste)
+	public function addWaste(AbstractWaste $waste): self
 	{
 		$this->wastes[] = $waste;
 		return $this;
 	}
+
 	/**
 	 * Get the value of population
+	 * 
+	 * @return int
 	 */ 
-	public function getPopulation():int
+	public function getPopulation(): int
 	{
 		return $this->population;
 	}
@@ -30,9 +33,9 @@ class Neighbourhood
 	/**
 	 * Set the value of population
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function setPopulation(int $population):self
+	public function setPopulation(int $population): self
 	{
 		$this->population = $population;
 
@@ -42,9 +45,9 @@ class Neighbourhood
 	/**
 	 * Get the value of wastes
 	 * 
-	 * @return  array
+	 * @return array
 	 */ 
-	public function getWastes():array
+	public function getWastes(): array
 	{
 		return $this->wastes;
 	}

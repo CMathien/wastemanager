@@ -10,8 +10,9 @@ abstract class AbstractService
 
 	/**
 	 * Get the value of capacity
+	 * @return int
 	 */ 
-	public function getCapacity():int
+	public function getCapacity(): int
 	{
 		return $this->capacity;
 	}
@@ -19,9 +20,9 @@ abstract class AbstractService
 	/**
 	 * Set the value of capacity
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function setCapacity(int $capacity):self
+	public function setCapacity(int $capacity): self
 	{
 		$this->capacity = $capacity;
 
@@ -30,8 +31,10 @@ abstract class AbstractService
 
 	/**
 	 * Get the value of usedCapacity
+	 * 
+	 * @return int
 	 */ 
-	public function getUsedCapacity():int
+	public function getUsedCapacity(): int
 	{
 		return $this->usedCapacity;
 	}
@@ -39,9 +42,9 @@ abstract class AbstractService
 	/**
 	 * Set the value of usedCapacity
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function setUsedCapacity($usedCapacity):self
+	public function setUsedCapacity($usedCapacity): self
 	{
 		$this->usedCapacity = $usedCapacity;
 
@@ -50,8 +53,10 @@ abstract class AbstractService
 
 	/**
 	 * Get the value of emissions
+	 * 
+	 * @return int
 	 */ 
-	public function getEmissions()
+	public function getEmissions(): int
 	{
 		return $this->emissions;
 	}
@@ -59,9 +64,10 @@ abstract class AbstractService
 	/**
 	 * Set the value of emissions
 	 *
-	 * @return  self
+	 * @param int $emissions
+	 * @return self
 	 */ 
-	public function setEmissions($emissions)
+	public function setEmissions(int $emissions): self
 	{
 		$this->emissions = $emissions;
 
@@ -70,8 +76,9 @@ abstract class AbstractService
 
 	/**
 	 * Get the value of wasteRepartition
+	 * @return array
 	 */ 
-	public function getWasteRepartition()
+	public function getWasteRepartition(): array
 	{
 		return $this->wasteRepartition;
 	}
@@ -79,9 +86,9 @@ abstract class AbstractService
 	/**
 	 * Set the value of wasteRepartition
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function addWasteRepartition($key, $value)
+	public function addWasteRepartition($key, $value): self
 	{
 		if ( !isset($this->wasteRepartition[$key]) )
 		{
@@ -98,7 +105,7 @@ abstract class AbstractService
 	 *
 	 * @return void
 	 */
-	public function displayServiceEmissions():void
+	public function displayServiceEmissions(): void
 	{
 		echo ucfirst($this->getName())." : ".number_format($this->getEmissions(),0,","," ")." t de CO2<br>";
 	}
@@ -108,7 +115,7 @@ abstract class AbstractService
 	 *
 	 * @return void
 	 */
-	public function displayServiceWasteRepartition():void
+	public function displayServiceWasteRepartition(): void
 	{
 		echo "<table><tr><th colspan=2>".ucfirst($this->getName())."</th><tr>";
 		if ( !empty($this->getWasteRepartition()) )

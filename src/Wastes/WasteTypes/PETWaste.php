@@ -13,7 +13,7 @@ class PETWaste extends AbstractWaste implements IncineratorInterface, PETInterfa
 	 *
 	 * @return string
 	 */
-	public function getName():string
+	public function getName(): string
 	{
 		return "plastique PET";
 	}
@@ -21,7 +21,7 @@ class PETWaste extends AbstractWaste implements IncineratorInterface, PETInterfa
 	/**
 	 * Get the value of recyclingEmissions
 	 */ 
-	public function getRecyclingEmissions():int
+	public function getRecyclingEmissions(): int
 	{
 		return $this->recyclingEmissions;
 	}
@@ -29,12 +29,11 @@ class PETWaste extends AbstractWaste implements IncineratorInterface, PETInterfa
 	/**
 	 * Set the value of recyclingEmissions
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function setRecyclingEmissions(int $recyclingEmissions):self
+	public function setRecyclingEmissions(int $recyclingEmissions): self
 	{
 		$this->recyclingEmissions = $recyclingEmissions;
-
 		return $this;
 	}
 }

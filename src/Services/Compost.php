@@ -13,7 +13,7 @@ class Compost extends AbstractService implements CompostInterface
 	 *
 	 * @return string
 	 */
-	public function getName():string
+	public function getName(): string
 	{
 		return "composteur";
 	}
@@ -21,7 +21,7 @@ class Compost extends AbstractService implements CompostInterface
 	/**
 	 * Get the value of boxes
 	 */ 
-	public function getBoxes():int
+	public function getBoxes(): int
 	{
 		return $this->boxes;
 	}
@@ -29,9 +29,9 @@ class Compost extends AbstractService implements CompostInterface
 	/**
 	 * Set the value of boxes
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function setBoxes(int $boxes):self
+	public function setBoxes(int $boxes): self
 	{
 		$this->boxes = $boxes;
 
@@ -41,15 +41,15 @@ class Compost extends AbstractService implements CompostInterface
 	/**
 	 * Set the value of capacity
 	 *
-	 * @return  self
+	 * @return self
 	 */ 
-	public function setCapacity(int $capacity):self
+	public function setCapacity(int $capacity): self
 	{
 		$capacity = $capacity * $this->boxes;
 		return parent::setCapacity($capacity);
 	}
 
-	public function treatWaste(CompostInterface $waste):void
+	public function treatWaste(CompostInterface $waste): void
 	{
 		$wasteQuantity = $waste->getQuantity();
 		$availableCapacity = $this->getCapacity() - $this->getUsedCapacity();
